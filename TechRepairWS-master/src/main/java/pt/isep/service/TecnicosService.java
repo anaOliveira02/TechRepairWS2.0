@@ -5,6 +5,7 @@ import pt.isep.dto.Converter;
 import pt.isep.dto.ListaTecnicoDTO;
 import pt.isep.dto.TecnicoDTO;
 import pt.isep.exception.ElementoNaoExistenteException;
+import pt.isep.exception.NumTecInvalidoException;
 import pt.isep.exception.NumTecNaoEncontradoException;
 import pt.isep.model.LojaReparacoes;
 import pt.isep.model.Tecnico;
@@ -26,13 +27,13 @@ public class TecnicosService {
         //poderia ser preciso traduzir modelo > DTO
     }
 
-    public static void removerTecnico(int numTec) {
+    public static void removeTecnico(int numTec) {
         LojaReparacoes drsn = Dados.carregarDados();
         if (numTec != 0) {
-            drsn.removerTecnicoNumTec(numTec);
+            drsn.removeTecnicoNumTec(numTec);
             Dados.guardarDados(drsn);
         } else {
-            throw new ElementoNaoExistenteException("Tecnico não encontrado");
+            throw new ElementoNaoExistenteException("Técnico não encontrado");
         }
     }
 
@@ -44,4 +45,22 @@ public class TecnicosService {
         return listaTecnicoDTO;
     }
 
+    public static Tecnico getTecnico(int numTec) {
+        Tecnico resultado = null ;
+        LojaReparacoes drsn = Dados.carregarDados();
+        //int instituicaoSelecionada = drsn.getInstituicaoPosicaoByNif(nif);
+        //Instituicao instituicao = drsn.getInstituicoes().get(instituicaoSelecionada);
+        //ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
+        if (numTec != 0) {
+            //resultado = tecnicos.get(numTec);
+            resultado = drsn.getByNumTec(numTec);
+            if(resultado == null){
+                throw new NumTecNaoEncontradoException("Tecnico nao encontrado");
+            }
+            Dados.guardarDados(drsn);
+            return resultado;
+        } else {
+            throw new NumTecInvalidoException("Numero de tecnico invalido");
+        }
+    }
 }

@@ -1,7 +1,14 @@
 package pt.isep.exception;
 
-public class NumTecNaoEncontradoException extends RuntimeException {
-    public NumTecNaoEncontradoException(String message) {
-        super(message);
+//<<<<<<< HEAD
+public class NumTecNaoEncontradoException extends RuntimeException{
+    public NumTecNaoEncontradoException(String s) {
+        super(s);}
     }
-}
+//=======
+//public class NumTecNaoEncontradoException extends RuntimeException {
+//    public NumTecNaoEncontradoException(String message) {
+//        super(message);
+//>>>>>>> origin/master
+//    }
+//}
