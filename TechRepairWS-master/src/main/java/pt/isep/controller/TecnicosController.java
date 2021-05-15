@@ -59,7 +59,7 @@ public class TecnicosController {
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getTecnicos(@PathVariable("numTec") int numTec) {
         try {
-            ListaTecnicoDTO listaTecnicoDTO = TecnicosService.getTecnicos(numTec);
+            ListaTecnicoDTO listaTecnicoDTO = TecnicosService.getTecnicos();
             if (listaTecnicoDTO != null) {
                 return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
             } else {
@@ -101,7 +101,7 @@ public class TecnicosController {
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeTecnico(@PathVariable("numTec") int numTec) {
         try {
-            TecnicosService.removerTecnico(numTec);
+            TecnicosService.removeTecnico(numTec);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);

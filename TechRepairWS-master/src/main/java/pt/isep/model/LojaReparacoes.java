@@ -24,14 +24,14 @@ public class LojaReparacoes implements Serializable {
         tecnicos.add(novo);
     }
 
-    public Tecnico removerTecnicoNumTec(int numTec) {
-        Tecnico tecnico = getByNumTec(numTec);
-        if (tecnico != null) {
-            tecnicos.remove(tecnico);
-            return tecnico;
-        }
-        return null;
-    }
+//    public Tecnico removerTecnicoNumTec(int numTec) {
+//        Tecnico tecnico = getByNumTec(numTec);
+//        if (tecnico != null) {
+//            tecnicos.remove(tecnico);
+//            return tecnico;
+//        }
+//        return null;
+//    }
 
     public Tecnico getByNumTec(int numTec) {
         for (int i = 0; i < tecnicos.size(); i++) {
@@ -71,5 +71,14 @@ public class LojaReparacoes implements Serializable {
                 "tecnicos=" + tecnicos +
                 ", clientes=" + clientes +
                 '}';
+    }
+
+    public Tecnico removeTecnicoNumTec(int numTec) {
+        Tecnico tecnico = getByNumTec(numTec);
+        if (tecnico != null) {
+            tecnicos.remove(tecnico);
+            return tecnico;
+        }
+        return null;
     }
 }
