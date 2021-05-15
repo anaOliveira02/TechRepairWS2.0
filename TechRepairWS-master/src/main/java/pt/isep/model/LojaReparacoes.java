@@ -1,16 +1,19 @@
 package pt.isep.model;
 
 import pt.isep.exception.ElementoNaoExistenteException;
+import pt.isep.exception.NumParDuplicadoException;
 import pt.isep.exception.TecnicoExistenteException;
 import pt.isep.model.Tecnico;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LojaReparacoes implements Serializable {
 
     private ArrayList<Tecnico> tecnicos = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Particular> particulares = new ArrayList<>();
 /*    private ArrayList<Assistencia> assistencias = new ArrayList<>();
     private ArrayList<Orcamento> orcamentos = new ArrayList<>();*/
 
@@ -22,6 +25,16 @@ public class LojaReparacoes implements Serializable {
             }
         }
         tecnicos.add(novo);
+    }
+
+    public void addClientePart(Particular novoCliente){
+        for (int i = 0; i < particulares.size(); i++) {
+            Particular p = particulares.get(i);
+            if (p.getNumPar() == novoCliente.getNumPar()) {
+                throw new NumParDuplicadoException(novoCliente.getNumPar()+"");
+            }
+        }
+        particulares.add(novoCliente);
     }
 
 //    public Tecnico removerTecnicoNumTec(int numTec) {
@@ -63,6 +76,23 @@ public class LojaReparacoes implements Serializable {
             }
         }
         return tecnicosAntes;
+    }
+
+    public ArrayList<Particular> getParticulares() {
+        return (ArrayList<Particular>) clientes.clone();
+    }
+
+    public void adicionarCliente(Particular clienteNovo) {
+        //validaPosicaoInstituicao(posicaoInstituicao);
+        //for (int i = 0; i < instituicoes.size(); i++) {
+            //Instituicao instituicao = instituicoes.get(i);
+            List<Particular> clientesExistentes = getParticulares();
+            for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
+                if(clientesExistentes.get(indiceExistentes).getNumPar() == clienteNovo.getNumPar()){
+                    throw new NumParDuplicadoException("Impossivel adicionar um cliente já existente");
+                }
+            }
+        particulares.add(clienteNovo);
     }
 
     @Override

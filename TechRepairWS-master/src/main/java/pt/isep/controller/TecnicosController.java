@@ -57,7 +57,7 @@ public class TecnicosController {
     @RequestMapping(value = "/tecnicos",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getTecnicos(/*@PathVariable("numTec") int numTec*/) {
+    public ResponseEntity<Object> getTecnicos() {
         try {
             ListaTecnicoDTO listaTecnicoDTO = TecnicosService.getTecnicos();
             if (listaTecnicoDTO != null) {
