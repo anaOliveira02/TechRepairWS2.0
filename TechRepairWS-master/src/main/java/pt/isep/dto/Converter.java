@@ -1,5 +1,6 @@
 package pt.isep.dto;
 
+import pt.isep.model.Assistencia;
 import pt.isep.model.Cliente;
 import pt.isep.model.Data;
 import pt.isep.model.Tecnico;
@@ -16,7 +17,10 @@ public class Converter {
         return new Tecnico(tecnico.getNumTec(), tecnico.getNome(), tecnico.getDataNascimento(), tecnico.getEmail());
     }
 
-
+    public static Assistencia assistenciaDTO2Assistencia(AssistenciaDTO assistencia) {
+        //Data novaData = dataDTO2data(tecnico.getDataNascimento());
+        return new Assistencia(assistencia.getNumAssist(), assistencia.getAssunto(), assistencia.getDataPat(), assistencia.getEstado(), assistencia.getEquipamento(), assistencia.getMarca(), assistencia.getModelo(), assistencia.getNumSerie());
+    }
 
 /*    public static ListaTecnicoDTO listaTecnicos2ListaTecnicosDTO(ArrayList<Tecnico> tecnicos) {
         ListaTecnicoDTO listaTecnicoDTO = new ListaTecnicoDTO();
@@ -48,6 +52,15 @@ public class Converter {
             listaClienteDTO.getClientes().add(new ClienteDTO(clientes.get(i).getNumCli(),clientes.get(i).getNome(), clientes.get(i).getNif()));
         }
         return listaClienteDTO;
+    }
+
+    public static ListaAssistenciaDTO listaassistencias2ListaAssistenciasDTO(ArrayList<Assistencia> assistencias) {
+        ListaAssistenciaDTO listaAssistenciaDTO = new ListaAssistenciaDTO();
+        for (int i = 0; i < assistencias.size(); i++) {
+            //Data data = dataDTO2data(tecnicos.get(i).getDataNascimento());
+            listaAssistenciaDTO.getAssistencias().add(new AssistenciaDTO(assistencias.get(i).getNumAssist(),assistencias.get(i).getAssunto(), assistencias.get(i).getDataPat(), assistencias.get(i).getEstado(), assistencias.get(i).getEquipamento(), assistencias.get(i).getMarca(), assistencias.get(i).getModelo(), assistencias.get(i).getNumSerie()));
+        }
+        return listaAssistenciaDTO;
     }
 
 //    private static Data date2dataDTO(Date dataNascimento) {

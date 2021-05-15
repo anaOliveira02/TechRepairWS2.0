@@ -1,5 +1,7 @@
 package pt.isep.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import pt.isep.exception.AssistenciaExistenteException;
 import pt.isep.exception.ElementoNaoExistenteException;
 import pt.isep.exception.NumParDuplicadoException;
 import pt.isep.exception.TecnicoExistenteException;
@@ -16,8 +18,8 @@ public class LojaReparacoes implements Serializable {
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Particular> particulares = new ArrayList<>();
     private ArrayList<Empresa> empresas = new ArrayList<>();
-/*    private ArrayList<Assistencia> assistencias = new ArrayList<>();
-    private ArrayList<Orcamento> orcamentos = new ArrayList<>();*/
+    private ArrayList<Assistencia> assistencias = new ArrayList<>();
+    private ArrayList<Orcamento> orcamentos = new ArrayList<>();
 
     public void adicionarTecnico(Tecnico novo){
         for (int i = 0; i < tecnicos.size(); i++) {
@@ -27,6 +29,16 @@ public class LojaReparacoes implements Serializable {
             }
         }
         tecnicos.add(novo);
+    }
+
+    public void adicionarAssistencia(Assistencia novo){
+        for (int i = 0; i < assistencias.size(); i++) {
+            Assistencia actual = assistencias.get(i);
+            if(novo.getNumAssist() == actual.getNumAssist()){
+                throw new AssistenciaExistenteException("Assistencia já existe");
+            }
+        }
+        assistencias.add(novo);
     }
 
     public void addClientePart(Particular novoCliente){
@@ -84,6 +96,18 @@ public class LojaReparacoes implements Serializable {
         return null;
     }
 
+    public Assistencia getByNumAssist(int numAssist) {
+        for (int i = 0; i < assistencias.size(); i++) {
+            Assistencia p = assistencias.get(i);
+            if (p.getNumAssist() == numAssist) {
+                return new Assistencia((Assistencia) p);
+            } else {
+                return new Assistencia(p);
+            }
+        }
+        return null;
+    }
+
     public Cliente getByNumCli(int numCli) {
         for (int i = 0; i < clientes.size(); i++) {
             Cliente p = clientes.get(i);
@@ -112,6 +136,15 @@ public class LojaReparacoes implements Serializable {
             clientes.add(new Cliente( p ));
         }
         return clientes;
+    }
+
+    public ArrayList<Assistencia> getAssistencias() {
+        ArrayList<Assistencia> assistencias = new ArrayList<>();
+        for (int i = 0; i < this.assistencias.size(); i++) {
+            Assistencia p = this.assistencias.get(i);
+            assistencias.add(new Assistencia( p ));
+        }
+        return assistencias;
     }
 
     public ArrayList<Tecnico> getTecnicosAntes(Data limite) {
@@ -207,6 +240,15 @@ public class LojaReparacoes implements Serializable {
         if (empresa != null) {
             empresas.remove(empresa);
             return empresa;
+        }
+        return null;
+    }
+
+    public Assistencia removeAssistencia(int numAssist) {
+        Assistencia assistencia = getByNumAssist(numAssist);
+        if (assistencia != null) {
+            assistencias.remove(assistencia);
+            return assistencia;
         }
         return null;
     }

@@ -2,6 +2,7 @@ package pt.isep.service;
 
 import pt.isep.dao.Dados;
 import pt.isep.dto.Converter;
+import pt.isep.dto.ListaAssistenciaDTO;
 import pt.isep.dto.ListaClienteDTO;
 import pt.isep.dto.ListaTecnicoDTO;
 import pt.isep.exception.*;
@@ -14,7 +15,7 @@ public class ClientesService {
     private static Object ListaClienteDTO;
 
     public static void addClienteParticular(Particular clienteNovo/*, int numPar, long telemovel*/ ) {
-        addCliente(clienteNovo/*, numPar, telemovel*/);
+        addClientePart(clienteNovo/*, numPar, telemovel*/);
     }
 
     public static void addClientePart(Particular clienteNovo) {
@@ -103,7 +104,7 @@ public class ClientesService {
         ListaClienteDTO listaClienteDTO= null;
         LojaReparacoes drsn = Dados.carregarDados();
         ArrayList<Cliente> clientes = drsn.getClientes();
-        ListaClienteDTO = Converter.listaClientes2ListaClienteDTO(clientes);
+        listaClienteDTO = Converter.listaClientes2ListaClienteDTO(clientes);
         return listaClienteDTO;
     }
 }

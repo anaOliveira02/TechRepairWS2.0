@@ -1,19 +1,35 @@
-package pt.isep.model;
+package pt.isep.dto;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import pt.isep.model.Data;
+import pt.isep.model.Equipamento;
+import pt.isep.model.Estado;
+import pt.isep.model.Marca;
 
-public class Assistencia implements Serializable {
+@JsonPropertyOrder({"numAssist", "assunto", "dataPat", "estado", "equipamento", "marca", "modelo", "numSerie"})
+@JacksonXmlRootElement(localName = "assistencia")
+public class AssistenciaDTO {
+
+    @JacksonXmlProperty(localName = "numAssist")
     private int numAssist;
+    @JacksonXmlProperty(localName = "assunto")
     private String assunto;
+    @JacksonXmlProperty(localName = "dataPat")
     private Data dataPat;
+    @JacksonXmlProperty(localName = "estado")
     private Estado estado;
+    @JacksonXmlProperty(localName = "equipamento")
     private Equipamento equipamento;
+    @JacksonXmlProperty(localName = "marca")
     private Marca marca;
+    @JacksonXmlProperty(localName = "modelo")
     private String modelo;
+    @JacksonXmlProperty(localName = "numSerie")
     private long numSerie;
 
-    public Assistencia(int numAssist, String assunto, Data dataPat, Estado estado, Equipamento equipamento, Marca marca, String modelo, long numSerie) {
+    public AssistenciaDTO(int numAssist, String assunto, Data dataPat, Estado estado, Equipamento equipamento, Marca marca, String modelo, long numSerie) {
         this.numAssist = numAssist;
         this.assunto = assunto;
         this.dataPat = dataPat;
@@ -22,17 +38,6 @@ public class Assistencia implements Serializable {
         this.marca = marca;
         this.modelo = modelo;
         this.numSerie = numSerie;
-    }
-
-    public Assistencia(Assistencia assistencia) {
-        setNumAssist(assistencia.numAssist);
-        setAssunto(assistencia.assunto);
-        setDataPat(assistencia.dataPat);
-        setEstado(assistencia.estado);
-        setEquipamento(assistencia.equipamento);
-        setMarca(assistencia.marca);
-        setModelo(assistencia.modelo);
-        setNumSerie(assistencia.numSerie);
     }
 
     public int getNumAssist() {
@@ -99,17 +104,4 @@ public class Assistencia implements Serializable {
         this.numSerie = numSerie;
     }
 
-    @Override
-    public String toString() {
-        return "Assistencia{" +
-                "numAssist=" + numAssist +
-                ", assunto='" + assunto + '\'' +
-                ", dataPat=" + dataPat +
-                ", estado=" + estado +
-                ", equipamento=" + equipamento +
-                ", marca=" + marca +
-                ", modelo='" + modelo + '\'' +
-                ", numSerie=" + numSerie +
-                '}';
-    }
 }
