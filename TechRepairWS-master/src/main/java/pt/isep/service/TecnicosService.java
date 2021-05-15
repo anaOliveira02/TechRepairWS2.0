@@ -5,6 +5,7 @@ import pt.isep.dto.Converter;
 import pt.isep.dto.ListaTecnicoDTO;
 import pt.isep.dto.TecnicoDTO;
 import pt.isep.exception.ElementoNaoExistenteException;
+import pt.isep.exception.NumTecNaoEncontradoException;
 import pt.isep.model.LojaReparacoes;
 import pt.isep.model.Tecnico;
 
@@ -25,13 +26,13 @@ public class TecnicosService {
         //poderia ser preciso traduzir modelo > DTO
     }
 
-    public static void removeTecnico(int numTec) {
+    public static void removerTecnico(int numTec) {
         LojaReparacoes drsn = Dados.carregarDados();
         if (numTec != 0) {
-            drsn.removeTecnicoNumTec(numTec);
+            drsn.removerTecnicoNumTec(numTec);
             Dados.guardarDados(drsn);
         } else {
-            throw new ElementoNaoExistenteException("Técnico não encontrado");
+            throw new ElementoNaoExistenteException("Tecnico não encontrado");
         }
     }
 
@@ -42,4 +43,5 @@ public class TecnicosService {
         ListaTecnicoDTO = Converter.listaTecnicos2ListaTecnicoDTO(tecnicos);
         return listaTecnicoDTO;
     }
+
 }
