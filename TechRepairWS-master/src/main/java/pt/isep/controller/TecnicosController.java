@@ -101,7 +101,7 @@ public class TecnicosController {
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeTecnico(@PathVariable("numTec") int numTec) {
         try {
-            TecnicosService.removeTecnico(numTec);
+            TecnicosService.removerTecnico(numTec);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
