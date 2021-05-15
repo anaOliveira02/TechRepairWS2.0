@@ -48,11 +48,7 @@ public class TecnicosService {
     public static Tecnico getTecnico(int numTec) {
         Tecnico resultado = null ;
         LojaReparacoes drsn = Dados.carregarDados();
-        //int instituicaoSelecionada = drsn.getInstituicaoPosicaoByNif(nif);
-        //Instituicao instituicao = drsn.getInstituicoes().get(instituicaoSelecionada);
-        //ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
         if (numTec != 0) {
-            //resultado = tecnicos.get(numTec);
             resultado = drsn.getByNumTec(numTec);
             if(resultado == null){
                 throw new NumTecNaoEncontradoException("Tecnico nao encontrado");
@@ -63,4 +59,6 @@ public class TecnicosService {
             throw new NumTecInvalidoException("Numero de tecnico invalido");
         }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package pt.isep.dto;
 
+import pt.isep.model.Cliente;
 import pt.isep.model.Data;
 import pt.isep.model.Tecnico;
 
@@ -38,6 +39,15 @@ public class Converter {
             listaTecnicoDTO.getTecnicos().add(new TecnicoDTO(tecnicos.get(i).getNumTec(),tecnicos.get(i).getNome(), tecnicos.get(i).getDataNascimento(), tecnicos.get(i).getEmail()));
         }
         return listaTecnicoDTO;
+    }
+
+    public static ListaClienteDTO listaClientes2ListaClienteDTO(ArrayList<Cliente> clientes) {
+        ListaClienteDTO listaClienteDTO = new ListaClienteDTO();
+        for (int i = 0; i < clientes.size(); i++) {
+            //Data data = dataDTO2data(tecnicos.get(i).getDataNascimento());
+            listaClienteDTO.getClientes().add(new ClienteDTO(clientes.get(i).getNumCli(),clientes.get(i).getNome(), clientes.get(i).getNif()));
+        }
+        return listaClienteDTO;
     }
 
 //    private static Data date2dataDTO(Date dataNascimento) {
