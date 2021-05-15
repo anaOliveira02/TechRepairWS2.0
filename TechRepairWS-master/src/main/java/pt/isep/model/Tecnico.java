@@ -36,17 +36,6 @@ public class Tecnico implements Serializable {
         this.numTec = numTec;
     }
 
-    private boolean numTecValido(int numTec) throws NumTecInvalidoException {
-        if (numTec >= 100 && numTec <= 999){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-
-
     public String getNome() {
         return nome;
     }
