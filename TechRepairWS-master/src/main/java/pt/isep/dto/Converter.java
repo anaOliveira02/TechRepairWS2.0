@@ -1,9 +1,6 @@
 package pt.isep.dto;
 
-import pt.isep.model.Assistencia;
-import pt.isep.model.Cliente;
-import pt.isep.model.Data;
-import pt.isep.model.Tecnico;
+import pt.isep.model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +17,11 @@ public class Converter {
     public static Assistencia assistenciaDTO2Assistencia(AssistenciaDTO assistencia) {
         //Data novaData = dataDTO2data(tecnico.getDataNascimento());
         return new Assistencia(assistencia.getNumAssist(), assistencia.getAssunto(), assistencia.getDataPat(), assistencia.getEstado(), assistencia.getEquipamento(), assistencia.getMarca(), assistencia.getModelo(), assistencia.getNumSerie());
+    }
+
+    public static Orcamento orcamentoDTO2Orcamento(OrcamentoDTO orcamento) {
+        //Data novaData = dataDTO2data(tecnico.getDataNascimento());
+        return new Orcamento(orcamento.getNumOrc(), orcamento.getDataOrcamento(), orcamento.getResponsavel());
     }
 
 /*    public static ListaTecnicoDTO listaTecnicos2ListaTecnicosDTO(ArrayList<Tecnico> tecnicos) {
@@ -61,6 +63,15 @@ public class Converter {
             listaAssistenciaDTO.getAssistencias().add(new AssistenciaDTO(assistencias.get(i).getNumAssist(),assistencias.get(i).getAssunto(), assistencias.get(i).getDataPat(), assistencias.get(i).getEstado(), assistencias.get(i).getEquipamento(), assistencias.get(i).getMarca(), assistencias.get(i).getModelo(), assistencias.get(i).getNumSerie()));
         }
         return listaAssistenciaDTO;
+    }
+
+    public static ListaOrcamentoDTO listaorcamentos2ListaOrcamentosDTO(ArrayList<Orcamento> orcamentos) {
+        ListaOrcamentoDTO listaOrcamentoDTO = new ListaOrcamentoDTO();
+        for (int i = 0; i < orcamentos.size(); i++) {
+            //Data data = dataDTO2data(tecnicos.get(i).getDataNascimento());
+            listaOrcamentoDTO.getOrcamentos().add(new OrcamentoDTO(orcamentos.get(i).getNumOrc(),orcamentos.get(i).getDataOrcamento(), orcamentos.get(i).getResponsavel()));
+        }
+        return listaOrcamentoDTO;
     }
 
 //    private static Data date2dataDTO(Date dataNascimento) {

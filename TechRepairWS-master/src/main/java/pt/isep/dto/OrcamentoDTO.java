@@ -1,23 +1,25 @@
-package pt.isep.model;
+package pt.isep.dto;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import pt.isep.model.Data;
+import pt.isep.model.Tecnico;
 
-public class Orcamento implements Serializable {
+@JsonPropertyOrder({"numOrc", "dataOrcamento", "responsavel"})
+@JacksonXmlRootElement(localName = "orcamento")
+public class OrcamentoDTO {
+    @JacksonXmlProperty(localName = "numOrc")
     private int numOrc;
+    @JacksonXmlProperty(localName = "dataOrcamento")
     private Data dataOrcamento;
+    @JacksonXmlProperty(localName = "responsavel")
     private Tecnico responsavel;
 
-    public Orcamento(int numOrc, Data dataOrcamento, Tecnico responsavel) {
+    public OrcamentoDTO(int numOrc, Data dataOrcamento, Tecnico responsavel) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;
         this.responsavel = responsavel;
-    }
-
-    public Orcamento(Orcamento orcamento) {
-        setNumOrc(orcamento.numOrc);
-        setDataOrcamento(orcamento.dataOrcamento);
-        setResponsavel(orcamento.responsavel);
     }
 
     public int getNumOrc() {
@@ -42,14 +44,5 @@ public class Orcamento implements Serializable {
 
     public void setResponsavel(Tecnico responsavel) {
         this.responsavel = responsavel;
-    }
-
-    @Override
-    public String toString() {
-        return "Orcamento{" +
-                "numOrc=" + numOrc +
-                ", dataOrcamento=" + dataOrcamento +
-                ", responsavel=" + responsavel +
-                '}';
     }
 }

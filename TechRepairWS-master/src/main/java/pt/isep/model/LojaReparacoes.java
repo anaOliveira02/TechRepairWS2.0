@@ -41,6 +41,16 @@ public class LojaReparacoes implements Serializable {
         assistencias.add(novo);
     }
 
+    public void adicionarOrcamento(Orcamento novo){
+        for (int i = 0; i < orcamentos.size(); i++) {
+            Orcamento actual = orcamentos.get(i);
+            if(novo.getNumOrc() == actual.getNumOrc()){
+                throw new AssistenciaExistenteException("Orçamento já existe");
+            }
+        }
+        orcamentos.add(novo);
+    }
+
     public void addClientePart(Particular novoCliente){
         for (int i = 0; i < particulares.size(); i++) {
             Particular p = particulares.get(i);
@@ -108,6 +118,18 @@ public class LojaReparacoes implements Serializable {
         return null;
     }
 
+    public Orcamento getByNumOrc(int numOrc) {
+        for (int i = 0; i < orcamentos.size(); i++) {
+            Orcamento p = orcamentos.get(i);
+            if (p.getNumOrc() == numOrc) {
+                return new Orcamento((Orcamento) p);
+            } else {
+                return new Orcamento(p);
+            }
+        }
+        return null;
+    }
+
     public Cliente getByNumCli(int numCli) {
         for (int i = 0; i < clientes.size(); i++) {
             Cliente p = clientes.get(i);
@@ -145,6 +167,15 @@ public class LojaReparacoes implements Serializable {
             assistencias.add(new Assistencia( p ));
         }
         return assistencias;
+    }
+
+    public ArrayList<Orcamento> getOrcamentos() {
+        ArrayList<Orcamento> orcamentos = new ArrayList<>();
+        for (int i = 0; i < this.orcamentos.size(); i++) {
+            Orcamento p = this.orcamentos.get(i);
+            orcamentos.add(new Orcamento( p ));
+        }
+        return orcamentos;
     }
 
     public ArrayList<Tecnico> getTecnicosAntes(Data limite) {
@@ -249,6 +280,15 @@ public class LojaReparacoes implements Serializable {
         if (assistencia != null) {
             assistencias.remove(assistencia);
             return assistencia;
+        }
+        return null;
+    }
+
+    public Orcamento removeOrcamento(int numOrc) {
+        Orcamento orcamento = getByNumOrc(numOrc);
+        if (orcamento != null) {
+            orcamentos.remove(orcamento);
+            return orcamento;
         }
         return null;
     }
