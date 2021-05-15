@@ -50,9 +50,10 @@ public class TecnicosService {
         LojaReparacoes drsn = Dados.carregarDados();
         //int instituicaoSelecionada = drsn.getInstituicaoPosicaoByNif(nif);
         //Instituicao instituicao = drsn.getInstituicoes().get(instituicaoSelecionada);
-        ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
+        //ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
         if (numTec != 0) {
-            resultado = tecnicos.get(numTec);
+            //resultado = tecnicos.get(numTec);
+            resultado = drsn.getByNumTec(numTec);
             if(resultado == null){
                 throw new NumTecNaoEncontradoException("Tecnico nao encontrado");
             }
