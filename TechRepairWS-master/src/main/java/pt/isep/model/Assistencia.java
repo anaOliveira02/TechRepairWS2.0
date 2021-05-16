@@ -7,13 +7,13 @@ public class Assistencia implements Serializable {
     private int numAssist;
     private String assunto;
     private Data dataPat;
-    private Estado estado;
-    private Equipamento equipamento;
-    private Marca marca;
+    private String estado;
+    private String equipamento;
+    private String marca;
     private String modelo;
     private long numSerie;
 
-    public Assistencia(int numAssist, String assunto, Data dataPat, Estado estado, Equipamento equipamento, Marca marca, String modelo, long numSerie) {
+    public Assistencia(int numAssist, String assunto, Data dataPat, String estado, String equipamento, String marca, String modelo, long numSerie) {
         this.numAssist = numAssist;
         this.assunto = assunto;
         this.dataPat = dataPat;
@@ -59,27 +59,27 @@ public class Assistencia implements Serializable {
         this.dataPat = dataPat;
     }
 
-    public Estado getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public Equipamento getEquipamento() {
+    public String getEquipamento() {
         return equipamento;
     }
 
-    public void setEquipamento(Equipamento equipamento) {
+    public void setEquipamento(String equipamento) {
         this.equipamento = equipamento;
     }
 
-    public Marca getMarca() {
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 

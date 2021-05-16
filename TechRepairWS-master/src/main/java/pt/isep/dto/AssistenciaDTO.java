@@ -19,17 +19,20 @@ public class AssistenciaDTO {
     @JacksonXmlProperty(localName = "dataPat")
     private Data dataPat;
     @JacksonXmlProperty(localName = "estado")
-    private Estado estado;
+    private String estado;
     @JacksonXmlProperty(localName = "equipamento")
-    private Equipamento equipamento;
+    private String equipamento;
     @JacksonXmlProperty(localName = "marca")
-    private Marca marca;
+    private String marca;
     @JacksonXmlProperty(localName = "modelo")
     private String modelo;
     @JacksonXmlProperty(localName = "numSerie")
     private long numSerie;
 
-    public AssistenciaDTO(int numAssist, String assunto, Data dataPat, Estado estado, Equipamento equipamento, Marca marca, String modelo, long numSerie) {
+    public AssistenciaDTO() {
+    }
+
+    public AssistenciaDTO(int numAssist, String assunto, Data dataPat, String estado, String equipamento, String marca, String modelo, long numSerie) {
         this.numAssist = numAssist;
         this.assunto = assunto;
         this.dataPat = dataPat;
@@ -64,27 +67,27 @@ public class AssistenciaDTO {
         this.dataPat = dataPat;
     }
 
-    public Estado getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public Equipamento getEquipamento() {
+    public String getEquipamento() {
         return equipamento;
     }
 
-    public void setEquipamento(Equipamento equipamento) {
+    public void setEquipamento(String equipamento) {
         this.equipamento = equipamento;
     }
 
-    public Marca getMarca() {
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 

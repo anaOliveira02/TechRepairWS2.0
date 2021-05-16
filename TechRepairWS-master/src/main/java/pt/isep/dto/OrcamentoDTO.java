@@ -16,6 +16,9 @@ public class OrcamentoDTO {
     @JacksonXmlProperty(localName = "responsavel")
     private Tecnico responsavel;
 
+    public OrcamentoDTO() {
+    }
+
     public OrcamentoDTO(int numOrc, Data dataOrcamento, Tecnico responsavel) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;

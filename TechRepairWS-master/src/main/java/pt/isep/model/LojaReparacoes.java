@@ -108,8 +108,8 @@ public class LojaReparacoes implements Serializable {
             Assistencia p = assistencias.get(i);
             if (p.getNumAssist() == numAssist) {
                 return new Assistencia((Assistencia) p);
-            } else {
-                return new Assistencia(p);
+//            } else {
+//                return new Assistencia(p);
             }
         }
         return null;
@@ -120,8 +120,8 @@ public class LojaReparacoes implements Serializable {
             Orcamento p = orcamentos.get(i);
             if (p.getNumOrc() == numOrc) {
                 return new Orcamento((Orcamento) p);
-            } else {
-                return new Orcamento(p);
+//            } else {
+//                return new Orcamento(p);
             }
         }
         return null;

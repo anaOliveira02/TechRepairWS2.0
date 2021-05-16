@@ -29,7 +29,7 @@ public class OrcamentosService {
             drsn.removeOrcamento(numOrc);
             Dados.guardarDados(drsn);
         } else {
-            throw new ElementoNaoExistenteException("Assistência não encontrada");
+            throw new ElementoNaoExistenteException("Orçamento não encontrada");
         }
     }
 
