@@ -11,6 +11,7 @@ import pt.isep.dto.DataDTO;
 import pt.isep.dto.ErroDTO;
 import pt.isep.dto.ListaClienteDTO;
 import pt.isep.dto.ListaTecnicoDTO;
+import pt.isep.service.ClientesService;
 import pt.isep.service.EstatisticasService;
 
 @RestController
@@ -28,15 +29,31 @@ public class EstatisticasController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+//    @RequestMapping(value = "/estatisticas/soempresas",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> getSoEmpresas() {
+//        ListaClienteDTO listaClienteDTO = EstatisticasService.getSoEmpresas();
+//        if (listaClienteDTO != null) {
+//            return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
+
     @RequestMapping(value = "/estatisticas/soempresas",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getSoFuncionarios() {
-        ListaClienteDTO listaClienteDTO = EstatisticasService.getSoEmpresas();
-        if (listaClienteDTO != null) {
-            return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
+    public ResponseEntity<Object> getClientes() {
+        try {
+            ListaClienteDTO listaClienteDTO = ClientesService.getClientes();
+            if (listaClienteDTO != null) {
+                return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/estatisticas/nascidosantesde/{dia}/{mes}/{ano}",

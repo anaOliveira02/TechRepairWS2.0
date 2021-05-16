@@ -117,6 +117,18 @@ public class Cliente implements Serializable {
         return intro;
     }
 
+    public ArrayList<Cliente> getSoEmpresas() {
+        ArrayList<Cliente> empresas = new ArrayList<>();
+        for (int i = 0; i < empresas.size(); i++) {
+            Cliente p = empresas.get(i);
+            if (p instanceof Empresa) {
+                Cliente clone = new Empresa((Empresa) p);
+                empresas.add(clone);
+            }
+        }
+        return empresas;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +

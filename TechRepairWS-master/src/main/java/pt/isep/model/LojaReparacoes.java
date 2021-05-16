@@ -335,7 +335,10 @@ public class LojaReparacoes implements Serializable {
 
     public ArrayList<Cliente> getSoEmpresas() {
         ArrayList<Cliente>  lista = new ArrayList<>();
-            lista.addAll(getSoEmpresas());
+        Cliente p = null;
+        ArrayList<Cliente> empresas = p.getSoEmpresas();
+
+        lista.addAll(p.getSoEmpresas());
         return lista;
     }
 
