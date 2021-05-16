@@ -37,11 +37,12 @@ public class ClientesService {
 
     public static void removeClienteParticular(int numPar) {
         LojaReparacoes drsn = Dados.carregarDados();
+        //Particular p = drsn.getByNumPar(numPar);
         if (numPar != 0) {
             drsn.removeClienteNumPar(numPar);
             Dados.guardarDados(drsn);
         } else {
-            throw new ElementoNaoExistenteException("Técnico não encontrado");
+            throw new ElementoNaoExistenteException("Cliente não encontrado");
         }
     }
 
@@ -51,7 +52,7 @@ public class ClientesService {
             drsn.removeClienteNumEmp(numEmp);
             Dados.guardarDados(drsn);
         } else {
-            throw new ElementoNaoExistenteException("Técnico não encontrado");
+            throw new ElementoNaoExistenteException("Cliente não encontrado");
         }
     }
 

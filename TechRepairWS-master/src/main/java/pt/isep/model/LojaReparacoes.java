@@ -1,10 +1,7 @@
 package pt.isep.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import pt.isep.exception.AssistenciaExistenteException;
-import pt.isep.exception.ElementoNaoExistenteException;
-import pt.isep.exception.NumParDuplicadoException;
-import pt.isep.exception.TecnicoExistenteException;
+import pt.isep.exception.*;
 import pt.isep.model.Tecnico;
 
 import javax.servlet.http.Part;
@@ -87,8 +84,8 @@ public class LojaReparacoes implements Serializable {
             Particular p = particulares.get(i);
             if (p.getNumPar() == numPar) {
                 return new Particular((Particular) p);
-            } else {
-                return new Particular(p);
+//            } else {
+//                return new Particular(p);
             }
         }
         return null;
@@ -99,8 +96,8 @@ public class LojaReparacoes implements Serializable {
             Empresa p = empresas.get(i);
             if (p.getNumEmp() == numEmp) {
                 return new Empresa((Empresa) p);
-            } else {
-                return new Empresa(p);
+//            } else {
+//                return new Empresa(p);
             }
         }
         return null;
@@ -254,7 +251,10 @@ public class LojaReparacoes implements Serializable {
             tecnicos.remove(tecnico);
             return tecnico;
         }
-        return null;
+        else {
+            throw new NumParNaoEncontrado("O tecnico não foi encontrado");
+        }
+        //return null;
     }
 
     public Particular removeClienteNumPar(int numPar) {
@@ -262,8 +262,10 @@ public class LojaReparacoes implements Serializable {
         if (particular != null) {
             particulares.remove(particular);
             return particular;
+        } else {
+            throw new NumParNaoEncontrado("O cliente não foi encontrado");
         }
-        return null;
+        //return null;
     }
 
     public Empresa removeClienteNumEmp(int numEmp) {
@@ -271,8 +273,10 @@ public class LojaReparacoes implements Serializable {
         if (empresa != null) {
             empresas.remove(empresa);
             return empresa;
+        } else {
+            throw new NumParNaoEncontrado("O cliente não foi encontrado");
         }
-        return null;
+        //return null;
     }
 
     public Assistencia removeAssistencia(int numAssist) {
@@ -281,7 +285,10 @@ public class LojaReparacoes implements Serializable {
             assistencias.remove(assistencia);
             return assistencia;
         }
-        return null;
+        else {
+            throw new AssistenciaExistenteException("A assistencia não foi encontrada");
+        }
+        //return null;
     }
 
     public Orcamento removeOrcamento(int numOrc) {
@@ -289,7 +296,9 @@ public class LojaReparacoes implements Serializable {
         if (orcamento != null) {
             orcamentos.remove(orcamento);
             return orcamento;
+        } else {
+            throw new NumParNaoEncontrado("O orçamento não foi encontrado");
         }
-        return null;
+        //return null;
     }
 }

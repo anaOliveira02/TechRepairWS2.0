@@ -3,16 +3,15 @@ package pt.isep.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pt.isep.dto.*;
 import pt.isep.model.Assistencia;
 import pt.isep.model.Orcamento;
 import pt.isep.service.AssistenciasService;
 import pt.isep.service.OrcamentosService;
 
+@RestController
+@RequestMapping("/api")
 public class OrçamentoController {
 
     @RequestMapping(value = "/orcamento",
@@ -27,7 +26,7 @@ public class OrçamentoController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/orcamento/{numOrc}",
+    @RequestMapping(value = "/orcamentoRemove/{numOrc}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeOrcamento(@PathVariable("numOrc") int numOrc) {

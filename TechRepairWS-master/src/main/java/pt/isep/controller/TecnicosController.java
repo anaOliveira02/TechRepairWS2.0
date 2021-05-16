@@ -101,7 +101,7 @@ public class TecnicosController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/tecnico/{numTec}",
+    @RequestMapping(value = "/tecnicoRemove/{numTec}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeTecnico(@PathVariable("numTec") int numTec) {

@@ -3,10 +3,7 @@ package pt.isep.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pt.isep.dto.*;
 import pt.isep.model.Cliente;
 import pt.isep.model.Empresa;
@@ -15,9 +12,11 @@ import pt.isep.model.Tecnico;
 import pt.isep.service.ClientesService;
 import pt.isep.service.TecnicosService;
 
+@RestController
+@RequestMapping("/api")
 public class ClientesController {
 
-    @RequestMapping(value = "/cliente.part",
+    @RequestMapping(value = "/clientePart",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
@@ -29,7 +28,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/cliente.emp",
+    @RequestMapping(value = "/clienteEmp",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
@@ -53,7 +52,7 @@ public class ClientesController {
 //            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
 //        }
 //    }
-    @RequestMapping(value = "/cliente.part/{numPar}",
+    @RequestMapping(value = "/clientePartRemove/{numPar}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeClienteParticular(@PathVariable("numPar") int numPar) {
@@ -64,7 +63,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/cliente.emp/{numEmp}",
+    @RequestMapping(value = "/clienteEmpRemove/{numEmp}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> removeClienteEmpresa(@PathVariable("numEmp") int numEmp) {
@@ -75,7 +74,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/cliente.par/{numPar}",
+    @RequestMapping(value = "/clientePar/{numPar}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getClientePart(@PathVariable("numPar") int numPar) {
@@ -90,7 +89,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/cliente.emp/{numEmp}",
+    @RequestMapping(value = "/clienteEmp/{numEmp}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getClienteEmp(@PathVariable("numEmp") int numEmp) {
@@ -135,7 +134,7 @@ public class ClientesController {
 //            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
 //        }
 //    }
-    @RequestMapping(value = "/clients",
+    @RequestMapping(value = "/clientes",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getClientes() {
