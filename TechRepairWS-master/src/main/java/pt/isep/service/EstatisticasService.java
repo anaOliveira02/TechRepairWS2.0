@@ -13,14 +13,15 @@ import pt.isep.model.Tecnico;
 import java.util.ArrayList;
 
 public class EstatisticasService {
-    public static ListaTecnicoDTO getNTecnicosMaisVelhas(int n) {
+    public static ListaTecnicoDTO getNTecnicosMaisVelhos(int n) {
         ListaTecnicoDTO listaTecnicoDTO = null;
         LojaReparacoes drsn = Dados.carregarDados();
         ArrayList<Tecnico> tecnicos = drsn.getNTecnicosMaisVelhos(n);
         listaTecnicoDTO = Converter.listaTecnicos2ListaTecnicoDTO(tecnicos);
         return listaTecnicoDTO;
     }
-    public static ListaTecnicoDTO getSoEmpresas() {
+
+    public static ListaClienteDTO getSoEmpresas() {
         ListaClienteDTO listaClienteDTO = null;
         LojaReparacoes drsn = Dados.carregarDados();
         ArrayList<Cliente> clientes = drsn.getSoEmpresas();
@@ -31,7 +32,7 @@ public class EstatisticasService {
         ListaTecnicoDTO listaTecnicoDTO = null;
         Data data = Converter.dataDTO2data(dataDTO);
         LojaReparacoes drsn = Dados.carregarDados();
-        ArrayList<Tecnico> pessoas = drsn.getTodosTecnicosDataNascAnteriorA(data);
+        ArrayList<Tecnico> tecnicos = drsn.getTodosTecnicosDataNascAnteriorA(data);
         listaTecnicoDTO = Converter.listaTecnicos2ListaTecnicoDTO(tecnicos);
         return listaTecnicoDTO;
     }

@@ -301,4 +301,56 @@ public class LojaReparacoes implements Serializable {
         }
         //return null;
     }
+
+    public ArrayList<Tecnico> getNTecnicosMaisVelhos(int n) {
+        Tecnico tecnico;
+        boolean flag = false;
+        ArrayList<Tecnico>  lista = new ArrayList<>();
+        if(n <= 0){
+            return lista;
+        }
+
+        ArrayList<Tecnico> tecnicos = getTecnicos();
+        for (int indice = 0; indice < tecnicos.size(); indice++) {
+            tecnico = tecnicos.get(indice);
+            Tecnico copiaTecnico = new Tecnico(tecnico);
+            for (int indiceMaisVelhos = 0; indiceMaisVelhos < lista.size() && indiceMaisVelhos < n; indiceMaisVelhos++) {
+                if (copiaTecnico.getDataNascimento().eAnterior(lista.get(indiceMaisVelhos).getDataNascimento())) {
+                    lista.add(indiceMaisVelhos, copiaTecnico);
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag == false) {
+                lista.add(copiaTecnico);
+            }
+        }
+
+        for(int i = lista.size()-1; i > n-1 ; i--){
+            lista.remove(i);
+        }
+
+        return lista;
+    }
+
+    public ArrayList<Cliente> getSoEmpresas() {
+        ArrayList<Cliente>  lista = new ArrayList<>();
+            lista.addAll(getSoEmpresas());
+        return lista;
+    }
+
+    public ArrayList<Tecnico> getTodosTecnicosDataNascAnteriorA(Data data) {
+        Tecnico tecnico;
+        boolean flag = false;
+        ArrayList<Tecnico>  lista = new ArrayList<>();
+            ArrayList<Tecnico> tecnicos = getTecnicos();
+            for (int indice = 0; indice < tecnicos.size(); indice++) {
+                tecnico = tecnicos.get(indice);
+                Tecnico copiaTecnico = new Tecnico(tecnico);
+                if (tecnico.getDataNascimento().eAnterior(data)) {
+                    lista.add(copiaTecnico);
+                }
+            }
+        return lista;
+    }
 }

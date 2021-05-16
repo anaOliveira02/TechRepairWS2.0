@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pt.isep.dto.DataDTO;
 import pt.isep.dto.ErroDTO;
-import pt.isep.dto.ListaPessoaPartialDTO;
+import pt.isep.dto.ListaClienteDTO;
 import pt.isep.dto.ListaTecnicoDTO;
 import pt.isep.service.EstatisticasService;
 
@@ -21,7 +21,7 @@ public class EstatisticasController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getNtecnicosMaisVelhos() {
-        ListaTecnicolDTO listaTecnicoDTO = EstatisticasService.getNPessoasMaisVelhas(5);
+        ListaTecnicoDTO listaTecnicoDTO = EstatisticasService.getNTecnicosMaisVelhos(5);
         if (listaTecnicoDTO != null) {
             return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
         }
@@ -32,9 +32,9 @@ public class EstatisticasController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getSoFuncionarios() {
-        ListaTecnicoDTO listaTecnicoDTO = EstatisticasService.getSoMedicos();
-        if (listaTecnicoDTO != null) {
-            return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
+        ListaClienteDTO listaClienteDTO = EstatisticasService.getSoEmpresas();
+        if (listaClienteDTO != null) {
+            return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
