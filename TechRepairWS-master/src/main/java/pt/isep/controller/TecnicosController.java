@@ -60,6 +60,11 @@ public class TecnicosController {
     public ResponseEntity<Object> getTecnicos() {
         try {
             ListaTecnicoDTO listaTecnicoDTO = TecnicosService.getTecnicos();
+//            return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
             if (listaTecnicoDTO != null) {
                 return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
             } else {

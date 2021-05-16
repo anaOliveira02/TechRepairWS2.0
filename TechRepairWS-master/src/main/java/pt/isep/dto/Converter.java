@@ -14,6 +14,16 @@ public class Converter {
         return new Tecnico(tecnico.getNumTec(), tecnico.getNome(), tecnico.getDataNascimento(), tecnico.getEmail());
     }
 
+    public static Empresa empresaDTO2Empresa(EmpresaDTO empresa) {
+        //Data novaData = dataDTO2data(tecnico.getDataNascimento());
+        return new Empresa(empresa.getNumCli(), empresa.getNome(), empresa.getEmail(), empresa.getNif(), empresa.getNumEmp(), empresa.getTelefone());
+    }
+
+    public static Particular particularDTO2Particular(ParticularDTO particular) {
+        //Data novaData = dataDTO2data(tecnico.getDataNascimento());
+        return new Particular(particular.getNumCli(), particular.getNome(), particular.getEmail(), particular.getNif(), particular.getNumPar(), particular.getTelemovel());
+    }
+
     public static Assistencia assistenciaDTO2Assistencia(AssistenciaDTO assistencia) {
         //Data novaData = dataDTO2data(tecnico.getDataNascimento());
         return new Assistencia(assistencia.getNumAssist(), assistencia.getAssunto(), assistencia.getDataPat(), assistencia.getEstado(), assistencia.getEquipamento(), assistencia.getMarca(), assistencia.getModelo(), assistencia.getNumSerie());
@@ -51,7 +61,7 @@ public class Converter {
         ListaClienteDTO listaClienteDTO = new ListaClienteDTO();
         for (int i = 0; i < clientes.size(); i++) {
             //Data data = dataDTO2data(tecnicos.get(i).getDataNascimento());
-            listaClienteDTO.getClientes().add(new ClienteDTO(clientes.get(i).getNumCli(),clientes.get(i).getNome(), clientes.get(i).getNif()));
+            listaClienteDTO.getClientes().add(new ClienteDTO(clientes.get(i).getNumCli(),clientes.get(i).getNome(), clientes.get(i).getEmail(), clientes.get(i).getNif()));
         }
         return listaClienteDTO;
     }

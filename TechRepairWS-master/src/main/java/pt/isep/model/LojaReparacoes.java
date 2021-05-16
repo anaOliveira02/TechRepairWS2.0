@@ -75,8 +75,8 @@ public class LojaReparacoes implements Serializable {
             Tecnico p = tecnicos.get(i);
             if (p.getNumTec() == numTec) {
                 return new Tecnico((Tecnico) p);
-            } else {
-                return new Tecnico(p);
+//            } else {
+//                return new Tecnico(p);
             }
         }
         return null;

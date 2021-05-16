@@ -1,10 +1,7 @@
 package pt.isep.service;
 
 import pt.isep.dao.Dados;
-import pt.isep.dto.Converter;
-import pt.isep.dto.ListaAssistenciaDTO;
-import pt.isep.dto.ListaClienteDTO;
-import pt.isep.dto.ListaTecnicoDTO;
+import pt.isep.dto.*;
 import pt.isep.exception.*;
 import pt.isep.model.*;
 
@@ -14,19 +11,21 @@ public class ClientesService {
 
     private static Object ListaClienteDTO;
 
-    public static void addClienteParticular(Particular clienteNovo/*, int numPar, long telemovel*/ ) {
-        addClientePart(clienteNovo/*, numPar, telemovel*/);
-    }
+//    public static void addClienteParticular(Particular clienteNovo/*, int numPar, long telemovel*/ ) {
+//        addClientePart(clienteNovo/*, numPar, telemovel*/);
+//    }
 
-    public static void addClientePart(Particular clienteNovo) {
+    public static void addClientePart(ParticularDTO clienteNovo) {
         LojaReparacoes drsn = Dados.carregarDados();
-        drsn.adicionarClientePart(clienteNovo);
+        Particular novo = Converter.particularDTO2Particular(clienteNovo);
+        drsn.adicionarClientePart(novo);
         Dados.guardarDados(drsn);
     }
 
-    public static void addClienteEmpresa(Empresa clienteNovo) {
+    public static void addClienteEmpresa(EmpresaDTO clienteNovo) {
         LojaReparacoes drsn = Dados.carregarDados();
-        drsn.adicionarClienteEmpresa(clienteNovo);
+        Empresa novo = Converter.empresaDTO2Empresa(clienteNovo);
+        drsn.adicionarClienteEmpresa(novo);
         Dados.guardarDados(drsn);
     }
 

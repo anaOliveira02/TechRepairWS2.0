@@ -1,5 +1,6 @@
 package pt.isep.service;
 
+import javafx.beans.binding.When;
 import pt.isep.dao.Dados;
 import pt.isep.dto.Converter;
 import pt.isep.dto.ListaTecnicoDTO;
@@ -29,12 +30,26 @@ public class TecnicosService {
 
     public static void removeTecnico(int numTec) {
         LojaReparacoes drsn = Dados.carregarDados();
-        if (numTec != 0) {
-            drsn.removeTecnicoNumTec(numTec);
-            Dados.guardarDados(drsn);
-        } else {
-            throw new ElementoNaoExistenteException("Técnico não encontrado");
-        }
+        ///ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
+        //for (int i = 0; i < tecnicos.size(); i++)
+        //{
+            //Tecnico p = null;
+            //p = tecnicos.get(i);
+            //int numero = p.getNumTec();
+            if (numTec != 0) {
+                drsn.removeTecnicoNumTec(numTec);
+                Dados.guardarDados(drsn);
+            } else {
+                throw new ElementoNaoExistenteException("Técnico não encontrado");
+            }
+        //}
+
+//        if (numTec != 0) {
+//            drsn.removeTecnicoNumTec(numTec);
+//            Dados.guardarDados(drsn);
+//        } else {
+//            throw new ElementoNaoExistenteException("Técnico não encontrado");
+//        }
     }
 
     public static ListaTecnicoDTO getTecnicos() {

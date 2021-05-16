@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pt.isep.dto.ErroDTO;
-import pt.isep.dto.ListaClienteDTO;
-import pt.isep.dto.ListaTecnicoDTO;
-import pt.isep.dto.TecnicoDTO;
+import pt.isep.dto.*;
 import pt.isep.model.Cliente;
 import pt.isep.model.Empresa;
 import pt.isep.model.Particular;
@@ -24,9 +21,9 @@ public class ClientesController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> addClienteParticular(@RequestBody Particular clientePartDTO) {
+    public ResponseEntity<Object> addClienteParticular(@RequestBody ParticularDTO clientePartDTO) {
         try {
-            ClientesService.addClienteParticular(clientePartDTO);
+            ClientesService.addClientePart(clientePartDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
@@ -36,7 +33,7 @@ public class ClientesController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> addClienteEmpresa(@RequestBody Empresa empresaDTO) {
+    public ResponseEntity<Object> addClienteEmpresa(@RequestBody EmpresaDTO empresaDTO) {
         try {
             ClientesService.addClienteEmpresa(empresaDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
