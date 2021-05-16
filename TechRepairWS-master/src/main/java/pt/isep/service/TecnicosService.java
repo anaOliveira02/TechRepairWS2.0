@@ -17,39 +17,26 @@ public class TecnicosService {
     private static Object ListaTecnicoDTO;
 
     public static void addTecnico(TecnicoDTO tecnico) {
-        //traduzir dto em modelo
+
         LojaReparacoes lojaReparacoes = Dados.carregarDados();
         Tecnico novoTecnico = Converter.tecnicoDTO2Tecnico(tecnico);
 
-        //LojaReparacoes lojaReparacoes = Dados.carregarDados();
         lojaReparacoes.adicionarTecnico(novoTecnico);
         Dados.guardarDados(lojaReparacoes);
 
-        //poderia ser preciso traduzir modelo > DTO
+
     }
 
     public static void removeTecnico(int numTec) {
         LojaReparacoes drsn = Dados.carregarDados();
-        ///ArrayList<Tecnico> tecnicos = drsn.getTecnicos();
-        //for (int i = 0; i < tecnicos.size(); i++)
-        //{
-            //Tecnico p = null;
-            //p = tecnicos.get(i);
-            //int numero = p.getNumTec();
+
             if (numTec != 0) {
                 drsn.removeTecnicoNumTec(numTec);
                 Dados.guardarDados(drsn);
             } else {
                 throw new ElementoNaoExistenteException("Técnico não encontrado");
             }
-        //}
 
-//        if (numTec != 0) {
-//            drsn.removeTecnicoNumTec(numTec);
-//            Dados.guardarDados(drsn);
-//        } else {
-//            throw new ElementoNaoExistenteException("Técnico não encontrado");
-//        }
     }
 
     public static ListaTecnicoDTO getTecnicos() {

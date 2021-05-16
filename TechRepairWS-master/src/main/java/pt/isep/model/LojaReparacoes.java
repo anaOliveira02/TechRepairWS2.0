@@ -58,22 +58,13 @@ public class LojaReparacoes implements Serializable {
         particulares.add(novoCliente);
     }
 
-//    public Tecnico removerTecnicoNumTec(int numTec) {
-//        Tecnico tecnico = getByNumTec(numTec);
-//        if (tecnico != null) {
-//            tecnicos.remove(tecnico);
-//            return tecnico;
-//        }
-//        return null;
-//    }
 
     public Tecnico getByNumTec(int numTec) {
         for (int i = 0; i < tecnicos.size(); i++) {
             Tecnico p = tecnicos.get(i);
             if (p.getNumTec() == numTec) {
                 return new Tecnico((Tecnico) p);
-//            } else {
-//                return new Tecnico(p);
+
             }
         }
         return null;
@@ -84,8 +75,7 @@ public class LojaReparacoes implements Serializable {
             Particular p = particulares.get(i);
             if (p.getNumPar() == numPar) {
                 return new Particular((Particular) p);
-//            } else {
-//                return new Particular(p);
+
             }
         }
         return null;
@@ -96,8 +86,7 @@ public class LojaReparacoes implements Serializable {
             Empresa p = empresas.get(i);
             if (p.getNumEmp() == numEmp) {
                 return new Empresa((Empresa) p);
-//            } else {
-//                return new Empresa(p);
+
             }
         }
         return null;
@@ -108,8 +97,7 @@ public class LojaReparacoes implements Serializable {
             Assistencia p = assistencias.get(i);
             if (p.getNumAssist() == numAssist) {
                 return new Assistencia((Assistencia) p);
-//            } else {
-//                return new Assistencia(p);
+
             }
         }
         return null;
@@ -120,8 +108,7 @@ public class LojaReparacoes implements Serializable {
             Orcamento p = orcamentos.get(i);
             if (p.getNumOrc() == numOrc) {
                 return new Orcamento((Orcamento) p);
-//            } else {
-//                return new Orcamento(p);
+
             }
         }
         return null;
@@ -199,9 +186,6 @@ public class LojaReparacoes implements Serializable {
     }
 
     public void adicionarClientePart(Particular clienteNovo) {
-        //validaPosicaoInstituicao(posicaoInstituicao);
-        //for (int i = 0; i < instituicoes.size(); i++) {
-            //Instituicao instituicao = instituicoes.get(i);
             List<Particular> clientesExistentes = getParticulares();
             for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
                 if(clientesExistentes.get(indiceExistentes).getNumPar() == clienteNovo.getNumPar()){
@@ -212,9 +196,6 @@ public class LojaReparacoes implements Serializable {
     }
 
     public void adicionarClienteEmpresa(Empresa clienteNovo) {
-        //validaPosicaoInstituicao(posicaoInstituicao);
-        //for (int i = 0; i < instituicoes.size(); i++) {
-        //Instituicao instituicao = instituicoes.get(i);
         List<Empresa> clientesExistentes = getEmpresas();
         for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
             if(clientesExistentes.get(indiceExistentes).getNumEmp() == clienteNovo.getNumEmp()){
@@ -225,9 +206,6 @@ public class LojaReparacoes implements Serializable {
     }
 
     public void adicionarCliente(Cliente clienteNovo) {
-        //validaPosicaoInstituicao(posicaoInstituicao);
-        //for (int i = 0; i < instituicoes.size(); i++) {
-        //Instituicao instituicao = instituicoes.get(i);
         List<Cliente> clientesExistentes = getCliente();
         for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
             if(clientesExistentes.get(indiceExistentes).getNumCli() == clienteNovo.getNumCli()){
@@ -254,7 +232,6 @@ public class LojaReparacoes implements Serializable {
         else {
             throw new NumParNaoEncontrado("O tecnico não foi encontrado");
         }
-        //return null;
     }
 
     public Particular removeClienteNumPar(int numPar) {
@@ -265,7 +242,6 @@ public class LojaReparacoes implements Serializable {
         } else {
             throw new NumParNaoEncontrado("O cliente não foi encontrado");
         }
-        //return null;
     }
 
     public Empresa removeClienteNumEmp(int numEmp) {
@@ -276,7 +252,6 @@ public class LojaReparacoes implements Serializable {
         } else {
             throw new NumParNaoEncontrado("O cliente não foi encontrado");
         }
-        //return null;
     }
 
     public Assistencia removeAssistencia(int numAssist) {
@@ -288,7 +263,6 @@ public class LojaReparacoes implements Serializable {
         else {
             throw new AssistenciaExistenteException("A assistencia não foi encontrada");
         }
-        //return null;
     }
 
     public Orcamento removeOrcamento(int numOrc) {
@@ -299,7 +273,6 @@ public class LojaReparacoes implements Serializable {
         } else {
             throw new NumParNaoEncontrado("O orçamento não foi encontrado");
         }
-        //return null;
     }
 
     public ArrayList<Tecnico> getNTecnicosMaisVelhos(int n) {

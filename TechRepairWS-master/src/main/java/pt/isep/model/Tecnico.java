@@ -95,11 +95,6 @@ public class Tecnico implements Serializable {
         return pat.matcher(email).matches();
     }
 
-//    public Tecnico removeTecnicoPosicao(int pos) {
-//        LojaReparacoes loja;
-//        loja.validaNumTec(pos);
-//        return loja.tecnicos.remove(pos);
-//    }
 
     @Override
     public String toString() {

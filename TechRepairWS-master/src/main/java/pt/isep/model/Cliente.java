@@ -13,8 +13,6 @@ public class Cliente implements Serializable {
     private String nome;
     private String email;
     private long nif;
-//    private ArrayList<Assistencia> assistencias = new ArrayList<>();
-//    private ArrayList<Orcamento> orcamentos = new ArrayList<>();
 
     public Cliente(int numCli, String nome, String email, long nif) {
         setNumCli(numCli);

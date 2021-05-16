@@ -29,17 +29,6 @@ public class EstatisticasController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @RequestMapping(value = "/estatisticas/soempresas",
-//            method = RequestMethod.GET,
-//            produces = MediaType.APPLICATION_XML_VALUE)
-//    public ResponseEntity<Object> getSoEmpresas() {
-//        ListaClienteDTO listaClienteDTO = EstatisticasService.getSoEmpresas();
-//        if (listaClienteDTO != null) {
-//            return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
-
     @RequestMapping(value = "/estatisticas/soempresas",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)

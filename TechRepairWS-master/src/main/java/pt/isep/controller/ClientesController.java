@@ -40,18 +40,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-//    @RequestMapping(value = "/cliente",
-//            method = RequestMethod.POST,
-//            consumes = MediaType.APPLICATION_XML_VALUE,
-//            produces = MediaType.APPLICATION_XML_VALUE)
-//    public ResponseEntity<Object> addCliente(@RequestBody Cliente clienteDTO) {
-//        try {
-//            ClientesService.addCliente(clienteDTO);
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
-//        }
-//    }
+
     @RequestMapping(value = "/clientePartRemove/{numPar}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
@@ -104,36 +93,7 @@ public class ClientesController {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-//    @RequestMapping(value = "/cliente.par/{numPar}",
-//            method = RequestMethod.GET,
-//            produces = MediaType.APPLICATION_XML_VALUE)
-//    public ResponseEntity<Object> getCliente(@PathVariable("numCli") int numCli) {
-//        try {
-//            Cliente clienteDTO = ClientesService.getCliente(numCli);
-//            if (clienteDTO != null) {
-//                return new ResponseEntity<>(clienteDTO, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
-//        }
-//    }
-//    @RequestMapping(value = "/clients.part",
-//            method = RequestMethod.GET,
-//            produces = MediaType.APPLICATION_XML_VALUE)
-//    public ResponseEntity<Object> getClientesPart() {
-//        try {
-//            ListaTecnicoDTO listaTecnicoDTO = TecnicosService.getTecnicos();
-//            if (listaTecnicoDTO != null) {
-//                return new ResponseEntity<>(listaTecnicoDTO, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
-//        }
-//    }
+
     @RequestMapping(value = "/clientes",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
