@@ -1,6 +1,5 @@
 package pt.isep.service;
 
-import javafx.beans.binding.When;
 import pt.isep.dao.Dados;
 import pt.isep.dto.Converter;
 import pt.isep.dto.ListaTecnicoDTO;
@@ -23,8 +22,6 @@ public class TecnicosService {
 
         lojaReparacoes.adicionarTecnico(novoTecnico);
         Dados.guardarDados(lojaReparacoes);
-
-
     }
 
     public static void removeTecnico(int numTec) {

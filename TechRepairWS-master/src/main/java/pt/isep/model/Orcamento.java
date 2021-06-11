@@ -7,17 +7,20 @@ public class Orcamento implements Serializable {
     private int numOrc;
     private Data dataOrcamento;
     private Tecnico responsavel;
+    private long valor;
 
-    public Orcamento(int numOrc, Data dataOrcamento, Tecnico responsavel) {
+    public Orcamento(int numOrc, Data dataOrcamento, Tecnico responsavel, long valor) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;
         this.responsavel = responsavel;
+        this.valor = valor;
     }
 
     public Orcamento(Orcamento orcamento) {
         setNumOrc(orcamento.numOrc);
         setDataOrcamento(orcamento.dataOrcamento);
         setResponsavel(orcamento.responsavel);
+        setValor(orcamento.valor);
     }
 
     public int getNumOrc() {
@@ -44,12 +47,17 @@ public class Orcamento implements Serializable {
         this.responsavel = responsavel;
     }
 
+    public long getValor() {return valor; }
+
+    public void setValor(long valor) {this.valor = valor; }
+
     @Override
     public String toString() {
         return "Orcamento{" +
                 "numOrc=" + numOrc +
                 ", dataOrcamento=" + dataOrcamento +
                 ", responsavel=" + responsavel +
+                ", valor=" +
                 '}';
     }
 }

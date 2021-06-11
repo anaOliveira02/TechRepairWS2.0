@@ -26,7 +26,7 @@ public class Converter {
     }
 
     public static Orcamento orcamentoDTO2Orcamento(OrcamentoDTO orcamento) {
-        return new Orcamento(orcamento.getNumOrc(), orcamento.getDataOrcamento(), orcamento.getResponsavel());
+        return new Orcamento(orcamento.getNumOrc(), orcamento.getDataOrcamento(), orcamento.getResponsavel(), orcamento.getValor());
     }
 
     public static Data dataDTO2data(DataDTO dataDTO){
@@ -62,7 +62,7 @@ public class Converter {
     public static ListaOrcamentoDTO listaorcamentos2ListaOrcamentosDTO(ArrayList<Orcamento> orcamentos) {
         ListaOrcamentoDTO listaOrcamentoDTO = new ListaOrcamentoDTO();
         for (int i = 0; i < orcamentos.size(); i++) {
-            listaOrcamentoDTO.getOrcamentos().add(new OrcamentoDTO(orcamentos.get(i).getNumOrc(),orcamentos.get(i).getDataOrcamento(), orcamentos.get(i).getResponsavel()));
+            listaOrcamentoDTO.getOrcamentos().add(new OrcamentoDTO(orcamentos.get(i).getNumOrc(),orcamentos.get(i).getDataOrcamento(), orcamentos.get(i).getResponsavel(), orcamentos.get(i).getValor()));
         }
         return listaOrcamentoDTO;
     }

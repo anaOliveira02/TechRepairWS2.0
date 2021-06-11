@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import pt.isep.model.Data;
 import pt.isep.model.Tecnico;
 
-@JsonPropertyOrder({"numOrc", "dataOrcamento", "responsavel"})
+@JsonPropertyOrder({"numOrc", "dataOrcamento", "responsavel", "valor"})
 @JacksonXmlRootElement(localName = "orcamento")
 public class OrcamentoDTO {
     @JacksonXmlProperty(localName = "numOrc")
@@ -15,14 +15,17 @@ public class OrcamentoDTO {
     private Data dataOrcamento;
     @JacksonXmlProperty(localName = "responsavel")
     private Tecnico responsavel;
+    @JacksonXmlProperty(localName = "valor")
+    private long valor;
 
     public OrcamentoDTO() {
     }
 
-    public OrcamentoDTO(int numOrc, Data dataOrcamento, Tecnico responsavel) {
+    public OrcamentoDTO(int numOrc, Data dataOrcamento, Tecnico responsavel, long valor) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;
         this.responsavel = responsavel;
+        this.valor = valor;
     }
 
     public int getNumOrc() {
@@ -48,4 +51,8 @@ public class OrcamentoDTO {
     public void setResponsavel(Tecnico responsavel) {
         this.responsavel = responsavel;
     }
+
+    public long getValor() {return valor; }
+
+    public void setValor(long valor) {this.valor = valor; }
 }
