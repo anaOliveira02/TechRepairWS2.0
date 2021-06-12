@@ -21,13 +21,13 @@ public class EstatisticasService {
         return listaTecnicoDTO;
     }
 
-    public static ListaClienteDTO getSoEmpresas() {
-        ListaClienteDTO listaClienteDTO = null;
-        LojaReparacoes drsn = Dados.carregarDados();
-        ArrayList<Cliente> clientes = drsn.getSoEmpresas();
-        listaClienteDTO = Converter.listaClientes2ListaClienteDTO(clientes);
-        return listaClienteDTO;
-    }
+//    public static ListaClienteDTO getSoEmpresas() {
+//        ListaClienteDTO listaClienteDTO = null;
+//        LojaReparacoes drsn = Dados.carregarDados();
+//        ArrayList<Cliente> clientes = drsn.getSoEmpresas();
+//        listaClienteDTO = Converter.listaClientes2ListaClienteDTO(clientes);
+//        return listaClienteDTO;
+//    }
     public static ListaTecnicoDTO getNascidosAntesDe(DataDTO dataDTO) {
         ListaTecnicoDTO listaTecnicoDTO = null;
         Data data = Converter.dataDTO2data(dataDTO);

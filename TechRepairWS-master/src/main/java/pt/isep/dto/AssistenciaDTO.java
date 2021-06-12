@@ -8,7 +8,7 @@ import pt.isep.model.Equipamento;
 import pt.isep.model.Estado;
 import pt.isep.model.Marca;
 
-@JsonPropertyOrder({"numAssist", "assunto", "dataPat", "estado", "equipamento", "marca", "modelo", "numSerie"})
+@JsonPropertyOrder({"numAssist", "assunto", "estado", "equipamento", "marca", "modelo", "numSerie", "tecnico"})
 @JacksonXmlRootElement(localName = "assistencia")
 public class AssistenciaDTO {
 
@@ -16,8 +16,6 @@ public class AssistenciaDTO {
     private int numAssist;
     @JacksonXmlProperty(localName = "assunto")
     private String assunto;
-    @JacksonXmlProperty(localName = "dataPat")
-    private Data dataPat;
     @JacksonXmlProperty(localName = "estado")
     private String estado;
     @JacksonXmlProperty(localName = "equipamento")
@@ -28,19 +26,21 @@ public class AssistenciaDTO {
     private String modelo;
     @JacksonXmlProperty(localName = "numSerie")
     private long numSerie;
+    @JacksonXmlProperty(localName = "tecnico")
+    private String tecnico;
 
     public AssistenciaDTO() {
     }
 
-    public AssistenciaDTO(int numAssist, String assunto, Data dataPat, String estado, String equipamento, String marca, String modelo, long numSerie) {
+    public AssistenciaDTO(int numAssist, String assunto, String estado, String equipamento, String marca, String modelo, long numSerie, String tecnico) {
         this.numAssist = numAssist;
         this.assunto = assunto;
-        this.dataPat = dataPat;
         this.estado = estado;
         this.equipamento = equipamento;
         this.marca = marca;
         this.modelo = modelo;
         this.numSerie = numSerie;
+        this.tecnico = tecnico;
     }
 
     public int getNumAssist() {
@@ -59,13 +59,6 @@ public class AssistenciaDTO {
         this.assunto = assunto;
     }
 
-    public Data getDataPat() {
-        return dataPat;
-    }
-
-    public void setDataPat(Data dataPat) {
-        this.dataPat = dataPat;
-    }
 
     public String getEstado() {
         return estado;
@@ -105,6 +98,14 @@ public class AssistenciaDTO {
 
     public void setNumSerie(long numSerie) {
         this.numSerie = numSerie;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
     }
 
 }

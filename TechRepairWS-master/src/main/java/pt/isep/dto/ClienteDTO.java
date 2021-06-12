@@ -4,31 +4,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@JsonPropertyOrder({"numCli", "nome", "email", "nif"})
+@JsonPropertyOrder({"nome", "nif"})
 @JacksonXmlRootElement(localName = "cliente")
 public class ClienteDTO {
-    @JacksonXmlProperty(localName = "numCli")
-    private int numCli;
     @JacksonXmlProperty(localName = "nome")
     private String nome;
-    @JacksonXmlProperty(localName = "email")
-    private String email;
     @JacksonXmlProperty(localName = "nif")
     private long nif;
+    @JacksonXmlProperty(localName = "numCli")
+    private int numCli;
 
-    public ClienteDTO(int numCli, String nome, String email, long nif) {
-        this.numCli = numCli;
+    public ClienteDTO(int numCli, String nome, long nif) {
+
         this.nome = nome;
-        this.email = email;
+        this.numCli = numCli;
         this.nif = nif;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public ClienteDTO() {

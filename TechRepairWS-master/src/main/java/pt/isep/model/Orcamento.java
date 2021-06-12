@@ -1,15 +1,20 @@
 package pt.isep.model;
 
+import pt.isep.dto.DataDTO;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Orcamento implements Serializable {
     private int numOrc;
     private Data dataOrcamento;
-    private Tecnico responsavel;
+    private String responsavel;
     private long valor;
 
-    public Orcamento(int numOrc, Data dataOrcamento, Tecnico responsavel, long valor) {
+    public Orcamento(int numOrc, DataDTO data, String responsavel, long valor) {
+
+    }
+    public Orcamento(int numOrc, Data dataOrcamento, String responsavel, long valor) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;
         this.responsavel = responsavel;
@@ -39,11 +44,11 @@ public class Orcamento implements Serializable {
         this.dataOrcamento = dataOrcamento;
     }
 
-    public Tecnico getResponsavel() {
+    public String getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(Tecnico responsavel) {
+    public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
 

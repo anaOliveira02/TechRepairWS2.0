@@ -13,8 +13,8 @@ public class LojaReparacoes implements Serializable {
 
     private ArrayList<Tecnico> tecnicos = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    private ArrayList<Particular> particulares = new ArrayList<>();
-    private ArrayList<Empresa> empresas = new ArrayList<>();
+    //private ArrayList<Particular> particulares = new ArrayList<>();
+    //private ArrayList<Empresa> empresas = new ArrayList<>();
     private ArrayList<Assistencia> assistencias = new ArrayList<>();
     private ArrayList<Orcamento> orcamentos = new ArrayList<>();
 
@@ -48,14 +48,24 @@ public class LojaReparacoes implements Serializable {
         orcamentos.add(novo);
     }
 
-    public void addClientePart(Particular novoCliente){
-        for (int i = 0; i < particulares.size(); i++) {
-            Particular p = particulares.get(i);
-            if (p.getNumPar() == novoCliente.getNumPar()) {
-                throw new NumParDuplicadoException(novoCliente.getNumPar()+"");
+    public void addCliente(Cliente novoCliente){
+        for (int i = 0; i < clientes.size(); i++) {
+            Cliente p = clientes.get(i);
+            if (p.getNumCli() == novoCliente.getNumCli()) {
+                throw new NumParDuplicadoException(novoCliente.getNumCli()+"");
             }
         }
-        particulares.add(novoCliente);
+        clientes.add(novoCliente);
+    }
+
+    public void addAssistencia(Assistencia assistencia){
+        for (int i = 0; i < assistencias.size(); i++) {
+            Assistencia p = assistencias.get(i);
+            if (p.getNumAssist() == assistencia.getNumAssist()) {
+                throw new NumParDuplicadoException(assistencia.getNumAssist()+"");
+            }
+        }
+        assistencias.add(assistencia);
     }
 
 
@@ -70,27 +80,27 @@ public class LojaReparacoes implements Serializable {
         return null;
     }
 
-    public Particular getByNumPar(int numPar) {
-        for (int i = 0; i < particulares.size(); i++) {
-            Particular p = particulares.get(i);
-            if (p.getNumPar() == numPar) {
-                return new Particular((Particular) p);
+//    public Particular getByNumPar(int numPar) {
+//        for (int i = 0; i < particulares.size(); i++) {
+//            Particular p = particulares.get(i);
+//            if (p.getNumPar() == numPar) {
+//                return new Particular((Particular) p);
+//
+//            }
+//        }
+//        return null;
+//    }
 
-            }
-        }
-        return null;
-    }
-
-    public Empresa getByNumEmp(int numEmp) {
-        for (int i = 0; i < empresas.size(); i++) {
-            Empresa p = empresas.get(i);
-            if (p.getNumEmp() == numEmp) {
-                return new Empresa((Empresa) p);
-
-            }
-        }
-        return null;
-    }
+//    public Empresa getByNumEmp(int numEmp) {
+//        for (int i = 0; i < empresas.size(); i++) {
+//            Empresa p = empresas.get(i);
+//            if (p.getNumEmp() == numEmp) {
+//                return new Empresa((Empresa) p);
+//
+//            }
+//        }
+//        return null;
+//    }
 
     public Assistencia getByNumAssist(int numAssist) {
         for (int i = 0; i < assistencias.size(); i++) {
@@ -173,37 +183,91 @@ public class LojaReparacoes implements Serializable {
         return tecnicosAntes;
     }
 
-    public ArrayList<Particular> getParticulares() {
-        return (ArrayList<Particular>) clientes.clone();
+    public Tecnico getTecnico(int nr) {
+        Tecnico tecnico = getByNumTec(nr);
+        if (tecnico != null) {
+            Tecnico copia = new Tecnico(tecnico);
+            return copia;
+        }
+        return null;
     }
 
-    public ArrayList<Empresa> getEmpresas() {
-        return (ArrayList<Empresa>) clientes.clone();
+    public Orcamento getOrcamento(int nr) {
+        Orcamento orcamento = getByNumOrc(nr);
+        if (orcamento != null) {
+            Orcamento copia = new Orcamento(orcamento);
+            return copia;
+        }
+        return null;
     }
+
+    public Cliente getCliente(int nr) {
+        Cliente cliente = getByNumCli(nr);
+        if (cliente != null) {
+            Cliente copia = new Cliente(cliente);
+            return copia;
+        }
+        return null;
+    }
+
+    public Assistencia getAssistencia(int nr) {
+        Assistencia assistencia = getByNumAssist(nr);
+        if (assistencia != null) {
+            Assistencia copia = new Assistencia(assistencia);
+            return copia;
+        }
+        return null;
+    }
+
+    public void addTecnico(Tecnico tecnico) throws NumeroTecnicoDuplicadoException {
+        Tecnico f = getByNumTec(tecnico.getNumTec());
+        if (f == null) {
+            addTecnico(tecnico);
+        } else {
+            throw new NumeroTecnicoDuplicadoException(f.getNumTec() + ": Número de Tecnico já existe");
+        }
+    }
+
+    public void addOrcamento(Orcamento orcamento) throws NumeroTecnicoDuplicadoException {
+        Orcamento f = getByNumOrc(orcamento.getNumOrc());
+        if (f == null) {
+            addOrcamento(orcamento);
+        } else {
+            throw new NumeroTecnicoDuplicadoException(f.getNumOrc() + ": Número de Orçamento já existe");
+        }
+    }
+
+//    public ArrayList<Particular> getParticulares() {
+//        return (ArrayList<Particular>) clientes.clone();
+//    }
+
+//    public ArrayList<Empresa> getEmpresas() {
+//        return (ArrayList<Empresa>) clientes.clone();
+//    }
 
     public ArrayList<Cliente> getCliente() {
         return (ArrayList<Cliente>) clientes.clone();
     }
 
-    public void adicionarClientePart(Particular clienteNovo) {
-            List<Particular> clientesExistentes = getParticulares();
-            for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
-                if(clientesExistentes.get(indiceExistentes).getNumPar() == clienteNovo.getNumPar()){
-                    throw new NumParDuplicadoException("Impossivel adicionar um cliente já existente");
-                }
-            }
-        particulares.add(clienteNovo);
-    }
+//    public void adicionarClientePart(Particular clienteNovo) {
+//            List<Particular> clientesExistentes = getParticulares();
+//            for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
+//                if(clientesExistentes.get(indiceExistentes).getNumPar() == clienteNovo.getNumPar()){
+//                    throw new NumParDuplicadoException("Impossivel adicionar um cliente já existente");
+//                }
+//            }
+//        particulares.add(clienteNovo);
+//    }
 
-    public void adicionarClienteEmpresa(Empresa clienteNovo) {
-        List<Empresa> clientesExistentes = getEmpresas();
-        for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
-            if(clientesExistentes.get(indiceExistentes).getNumEmp() == clienteNovo.getNumEmp()){
-                throw new NumParDuplicadoException("Impossivel adicionar um cliente já existente");
-            }
-        }
-        empresas.add(clienteNovo);
-    }
+//    public void adicionarClienteEmpresa(Empresa clienteNovo) {
+//        List<Empresa> clientesExistentes = getEmpresas();
+//        for (int indiceExistentes = 0; indiceExistentes < clientesExistentes.size(); indiceExistentes++) {
+//            if(clientesExistentes.get(indiceExistentes).getNumEmp() == clienteNovo.getNumEmp()){
+//                throw new NumParDuplicadoException("Impossivel adicionar um cliente já existente");
+//            }
+//        }
+//        empresas.add(clienteNovo);
+//    }
 
     public void adicionarCliente(Cliente clienteNovo) {
         List<Cliente> clientesExistentes = getCliente();
@@ -234,21 +298,32 @@ public class LojaReparacoes implements Serializable {
         }
     }
 
-    public Particular removeClienteNumPar(int numPar) {
-        Particular particular = getByNumPar(numPar);
-        if (particular != null) {
-            particulares.remove(particular);
-            return particular;
-        } else {
-            throw new NumParNaoEncontrado("O cliente não foi encontrado");
-        }
-    }
+//    public Cliente removeClienteNumCli(int numCli) {
+//        Cliente cliente = getByNumCli(numCli);
+//        if (cliente != null) {
+//            clientes.remove(cliente);
+//            return cliente;
+//        }
+//        else {
+//            throw new NumParNaoEncontrado("O cliente não foi encontrado");
+//        }
+//    }
 
-    public Empresa removeClienteNumEmp(int numEmp) {
-        Empresa empresa = getByNumEmp(numEmp);
-        if (empresa != null) {
-            empresas.remove(empresa);
-            return empresa;
+//    public Particular removeClienteNumPar(int numPar) {
+//        Particular particular = getByNumPar(numPar);
+//        if (particular != null) {
+//            particulares.remove(particular);
+//            return particular;
+//        } else {
+//            throw new NumParNaoEncontrado("O cliente não foi encontrado");
+//        }
+//    }
+
+    public Cliente removeClienteNumCli(int numCli) {
+        Cliente cliente = getByNumCli(numCli);
+        if (cliente != null) {
+            clientes.remove(cliente);
+            return cliente;
         } else {
             throw new NumParNaoEncontrado("O cliente não foi encontrado");
         }
@@ -306,14 +381,14 @@ public class LojaReparacoes implements Serializable {
         return lista;
     }
 
-    public ArrayList<Cliente> getSoEmpresas() {
-        ArrayList<Cliente>  lista = new ArrayList<>();
-        Cliente p = null;
-        ArrayList<Cliente> empresas = p.getSoEmpresas();
-
-        lista.addAll(p.getSoEmpresas());
-        return lista;
-    }
+//    public ArrayList<Cliente> getSoEmpresas() {
+//        ArrayList<Cliente>  lista = new ArrayList<>();
+//        Cliente p = null;
+//        ArrayList<Cliente> empresas = p.getSoEmpresas();
+//
+//        lista.addAll(p.getSoEmpresas());
+//        return lista;
+//    }
 
     public ArrayList<Tecnico> getTodosTecnicosDataNascAnteriorA(Data data) {
         Tecnico tecnico;
@@ -328,5 +403,25 @@ public class LojaReparacoes implements Serializable {
                 }
             }
         return lista;
+    }
+
+    public void updateTecnico(int nr, Tecnico tecnico) throws ElementoNaoExistenteException {
+        removeTecnicoNumTec(nr);
+        addTecnico(tecnico);
+    }
+
+    public void updateCliente(int nr, Cliente cliente) throws ElementoNaoExistenteException {
+        removeClienteNumCli(nr);
+        addCliente(cliente);
+    }
+
+    public void updateAssistencia(int nr, Assistencia assistencia) throws ElementoNaoExistenteException {
+        removeAssistencia(nr);
+        addAssistencia(assistencia);
+    }
+
+    public void updateOrcamento(int nr, Orcamento orcamento) throws ElementoNaoExistenteException {
+        removeOrcamento(nr);
+        addOrcamento(orcamento);
     }
 }

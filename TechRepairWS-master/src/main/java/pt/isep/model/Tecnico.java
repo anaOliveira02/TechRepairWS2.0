@@ -12,20 +12,17 @@ public class Tecnico implements Serializable {
     private int numTec;
     private String nome;
     private Data dataNascimento;
-    private String email;
 
-    public Tecnico(int numTec, String nome, Data dataNascimento, String email) {
+    public Tecnico(int numTec, String nome, Data dataNascimento) {
         setNumTec(numTec);
         setNome(nome);
         this.dataNascimento = dataNascimento;
-        setEmail(email);
     }
 
     public Tecnico(Tecnico tecnico) {
         setNumTec(tecnico.numTec);
         setNome(tecnico.nome);
         this.dataNascimento = tecnico.dataNascimento;
-        setEmail(tecnico.email);
     }
 
     public int getNumTec() {
@@ -70,31 +67,6 @@ public class Tecnico implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (emailValido(email)){
-            this.email = email;
-        } else {
-            throw new EmailInvalidoException(email + ": email inválido");
-        }
-    }
-
-    private boolean emailValido(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
-
 
     @Override
     public String toString() {
@@ -102,7 +74,6 @@ public class Tecnico implements Serializable {
                 "TEC" + numTec +
                 ", nome='" + nome + '\'' +
                 ", dataNascimento=" + dataNascimento +
-                ", email='" + email + '\'' +
                 '}';
     }
 }

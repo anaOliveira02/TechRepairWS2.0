@@ -6,33 +6,33 @@ import java.util.Date;
 public class Assistencia implements Serializable {
     private int numAssist;
     private String assunto;
-    private Data dataPat;
     private String estado;
     private String equipamento;
     private String marca;
     private String modelo;
     private long numSerie;
+    private String tecnico;
 
-    public Assistencia(int numAssist, String assunto, Data dataPat, String estado, String equipamento, String marca, String modelo, long numSerie) {
+    public Assistencia(int numAssist, String assunto, String estado, String equipamento, String marca, String modelo, long numSerie, String tecnico) {
         this.numAssist = numAssist;
         this.assunto = assunto;
-        this.dataPat = dataPat;
         this.estado = estado;
         this.equipamento = equipamento;
         this.marca = marca;
         this.modelo = modelo;
         this.numSerie = numSerie;
+        this.tecnico = tecnico;
     }
 
     public Assistencia(Assistencia assistencia) {
         setNumAssist(assistencia.numAssist);
         setAssunto(assistencia.assunto);
-        setDataPat(assistencia.dataPat);
         setEstado(assistencia.estado);
         setEquipamento(assistencia.equipamento);
         setMarca(assistencia.marca);
         setModelo(assistencia.modelo);
         setNumSerie(assistencia.numSerie);
+        setTecnico(assistencia.tecnico);
     }
 
     public int getNumAssist() {
@@ -49,14 +49,6 @@ public class Assistencia implements Serializable {
 
     public void setAssunto(String assunto) {
         this.assunto = assunto;
-    }
-
-    public Data getDataPat() {
-        return dataPat;
-    }
-
-    public void setDataPat(Data dataPat) {
-        this.dataPat = dataPat;
     }
 
     public String getEstado() {
@@ -99,17 +91,25 @@ public class Assistencia implements Serializable {
         this.numSerie = numSerie;
     }
 
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+
     @Override
     public String toString() {
         return "Assistencia{" +
                 "numAssist=" + numAssist +
                 ", assunto='" + assunto + '\'' +
-                ", dataPat=" + dataPat +
                 ", estado=" + estado +
                 ", equipamento=" + equipamento +
                 ", marca=" + marca +
                 ", modelo='" + modelo + '\'' +
                 ", numSerie=" + numSerie +
+                ", tecnico=" +tecnico +
                 '}';
     }
 }

@@ -29,21 +29,21 @@ public class EstatisticasController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/estatisticas/soempresas",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getClientes() {
-        try {
-            ListaClienteDTO listaClienteDTO = ClientesService.getClientes();
-            if (listaClienteDTO != null) {
-                return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
-        }
-    }
+//    @RequestMapping(value = "/estatisticas/soempresas",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> getClientes() {
+//        try {
+//            ListaClienteDTO listaClienteDTO = ClientesService.getClientes();
+//            if (listaClienteDTO != null) {
+//                return new ResponseEntity<>(listaClienteDTO, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
 
     @RequestMapping(value = "/estatisticas/nascidosantesde/{dia}/{mes}/{ano}",
             method = RequestMethod.GET,

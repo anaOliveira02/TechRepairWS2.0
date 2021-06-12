@@ -13,21 +13,22 @@ public class TecnicoDTO {
     @JacksonXmlProperty(localName = "nome")
     private String nome;
     @JacksonXmlProperty(localName = "dataNascimento")
-    private Data dataNascimento;
-    @JacksonXmlProperty(localName = "email")
-    private String email;
+    private DataDTO dataNascimento;
 
-    public TecnicoDTO(int numTec, String nome, Data dataNascimento, String email) {
+    public TecnicoDTO(int numTec, String nome, DataDTO dataNascimento) {
         this.numTec = numTec;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.email = email;
     }
 
     public TecnicoDTO() {
     }
 
     public TecnicoDTO(int numTec, String nome) {
+    }
+
+    public TecnicoDTO(int numTec, String nome, Data dataNascimento) {
+
     }
 
     public int getNumTec() {
@@ -46,19 +47,12 @@ public class TecnicoDTO {
         this.nome = nome;
     }
 
-    public Data getDataNascimento() {
+    public DataDTO getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Data dataNascimento) {
+    public void setDataNascimento(DataDTO dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

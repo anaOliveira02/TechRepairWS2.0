@@ -12,20 +12,24 @@ public class OrcamentoDTO {
     @JacksonXmlProperty(localName = "numOrc")
     private int numOrc;
     @JacksonXmlProperty(localName = "dataOrcamento")
-    private Data dataOrcamento;
+    private DataDTO dataOrcamento;
     @JacksonXmlProperty(localName = "responsavel")
-    private Tecnico responsavel;
+    private String responsavel;
     @JacksonXmlProperty(localName = "valor")
     private long valor;
 
     public OrcamentoDTO() {
     }
 
-    public OrcamentoDTO(int numOrc, Data dataOrcamento, Tecnico responsavel, long valor) {
+    public OrcamentoDTO(int numOrc, DataDTO dataOrcamento, String responsavel, long valor) {
         this.numOrc = numOrc;
         this.dataOrcamento = dataOrcamento;
         this.responsavel = responsavel;
         this.valor = valor;
+    }
+
+    public OrcamentoDTO(int numOrc, Data dataOrcamento, String responsavel, long valor) {
+
     }
 
     public int getNumOrc() {
@@ -36,19 +40,19 @@ public class OrcamentoDTO {
         this.numOrc = numOrc;
     }
 
-    public Data getDataOrcamento() {
+    public DataDTO getDataOrcamento() {
         return dataOrcamento;
     }
 
-    public void setDataOrcamento(Data dataOrcamento) {
+    public void setDataOrcamento(DataDTO dataOrcamento) {
         this.dataOrcamento = dataOrcamento;
     }
 
-    public Tecnico getResponsavel() {
+    public String getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(Tecnico responsavel) {
+    public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
 
