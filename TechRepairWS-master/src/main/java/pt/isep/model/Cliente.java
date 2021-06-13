@@ -25,6 +25,10 @@ public class Cliente implements Serializable {
         setNumCli(cliente.numCli);
     }
 
+    public Cliente() {
+
+    }
+
     public int getNumCli() {return numCli; }
 
     public void setNumCli(int numCli) {this.numCli = numCli; }
@@ -98,8 +102,9 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "Cliente{" +
-                ", nome='" + nome + '\'' +
+                " nome='" + nome + '\'' +
                 ", nif=" + nif +
+                ", numCli=" +
                 '}';
     }
 }

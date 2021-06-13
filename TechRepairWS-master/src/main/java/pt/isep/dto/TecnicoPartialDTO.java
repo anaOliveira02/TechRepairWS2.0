@@ -3,24 +3,27 @@ package pt.isep.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import pt.isep.model.Data;
 
 
-@JsonPropertyOrder({"numTec", "nome"})
-@JacksonXmlRootElement(localName = "pessoa")
+@JsonPropertyOrder({"numTec", "nome", "dataNascimento"})
+@JacksonXmlRootElement(localName = "tecnico")
 public class TecnicoPartialDTO {
     @JacksonXmlProperty(localName = "numTec")
-    private long numTec;
+    private int numTec;
     @JacksonXmlProperty(localName = "nome")
     private String nome;
+    @JacksonXmlProperty(localName = "dataNascimento")
+    private Data dataNascimento;
 
     public TecnicoPartialDTO() {
     }
-    public long getNumTec() {
+    public int getNumTec() {
         return numTec;
     }
 
-    public void setNumTec(long nif) {
-        this.numTec = nif;
+    public void setNumTec(int numTec) {
+        this.numTec = numTec;
     }
 
     public String getNome() {
@@ -29,5 +32,13 @@ public class TecnicoPartialDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Data getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Data dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

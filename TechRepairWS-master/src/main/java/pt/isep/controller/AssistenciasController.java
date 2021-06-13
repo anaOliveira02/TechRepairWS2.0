@@ -76,6 +76,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pt.isep.dto.*;
 import pt.isep.service.AssistenciasService;
+import pt.isep.service.ClientesService;
 import pt.isep.service.TecnicosService;
 
 @RestController
@@ -153,21 +154,45 @@ public class AssistenciasController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getAssistencias() {
+//        try {
+//            ListaAssistenciaPartialDTO assistenciasDTO = AssistenciasService.getAssistencias();
+//            return new ResponseEntity<>(assistenciasDTO, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
         try {
-            ListaAssistenciaPartialDTO assistenciasDTO = AssistenciasService.getAssistencias();
-            return new ResponseEntity<>(assistenciasDTO, HttpStatus.OK);
+            ListaAssistenciaPartialDTO listaClientePartialDTO = AssistenciasService.getAssistencias();
+            if (listaClientePartialDTO != null) {
+                return new ResponseEntity<>(listaClientePartialDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
+
     }
 
     @RequestMapping(value = "/assistencia/{bi}",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> getAssistencia(@PathVariable("numAssis") int numAssis) {
+//        try {
+//            AssistenciaPartialDTO assistenciaDTO = AssistenciasService.getAssistencia(numAssis);
+//            return new ResponseEntity<>(assistenciaDTO, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getAssistencia(@PathVariable("numAssis") int numAssis) {
+    public ResponseEntity<Object> getAssistencia(@PathVariable("id") int nr) {
         try {
-            AssistenciaPartialDTO assistenciaDTO = AssistenciasService.getAssistencia(numAssis);
-            return new ResponseEntity<>(assistenciaDTO, HttpStatus.OK);
+            AssistenciaDTO clienteDTO = AssistenciasService.getAssistencia(nr);
+            if (clienteDTO != null) {
+                return new ResponseEntity<>(clienteDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }

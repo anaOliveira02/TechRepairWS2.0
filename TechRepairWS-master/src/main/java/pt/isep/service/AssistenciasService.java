@@ -44,6 +44,7 @@ public class AssistenciasService {
     }
 
     public static ListaAssistenciaPartialDTO getAssistencias() {
+
         LojaReparacoes lojaReparacoes = Dados.carregarDados();
         ArrayList<Assistencia> assistencias = lojaReparacoes.getAssistencias();
         ListaAssistenciaPartialDTO listaAssistenciaDTO = Converter.listaAssistencia2ListaAssistenciaPartialDTO(assistencias);
@@ -112,11 +113,23 @@ public class AssistenciasService {
 //
 //    }
 
-    public static AssistenciaPartialDTO getAssistencia(int numAssis) {
-        LojaReparacoes drsn = Dados.carregarDados();
-        Assistencia assistencia = drsn.getAssistencia(numAssis);
-        AssistenciaPartialDTO assistenciaPartial = Converter.assistencia2AssistenciaPartialDTO(assistencia);
-        return assistenciaPartial;
+    public static AssistenciaDTO getAssistencia(int numAssis) {
+//        LojaReparacoes drsn = Dados.carregarDados();
+//        Assistencia assistencia = drsn.getAssistencia(numAssis);
+//        AssistenciaPartialDTO assistenciaPartial = Converter.assistencia2AssistenciaPartialDTO(assistencia);
+//        return assistenciaPartial;
+
+        LojaReparacoes lojaReparacoes = Dados.carregarDados();
+        Assistencia cliente = lojaReparacoes.getAssistencia(numAssis);
+        if (cliente == null) {
+            return null;
+        }
+        AssistenciaDTO clienteDTO = Converter.assistencia2AssistenciaDTO(cliente);
+        if(clienteDTO != null){
+            return clienteDTO;
+        }else{
+            throw new ConversaoException("AssistenciaFullDTO");
+        }
     }
 
 //    public ListaAssistenciaPartialDTO getAssistencias() {

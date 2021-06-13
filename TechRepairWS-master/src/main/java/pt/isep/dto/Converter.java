@@ -107,14 +107,22 @@ public class Converter {
         return tecnicoDTO;
     }
 
-    public static Tecnico tecnicoDTO2Tecnico(TecnicoDTO tecnicoDTO) throws NullPointerException {
-        Tecnico tecnico = null;
+//    public static Tecnico tecnicoDTO2Tecnico(TecnicoDTO tecnicoDTO) throws NullPointerException {
+//        Tecnico tecnico = null;
+//
+//        Data data = dataDTO2data(tecnicoDTO.getDataNascimento());
+//        tecnico = new Tecnico(tecnicoDTO.getNumTec(), tecnicoDTO.getNome(), data);
+//
+//        return tecnico;
+//    }
 
-        Data data = dataDTO2data(tecnicoDTO.getDataNascimento());
-        tecnico = new Tecnico(tecnicoDTO.getNumTec(), tecnicoDTO.getNome(), data);
-
-        return tecnico;
-    }
+//    public static Tecnico tecnicoDtoToTecnico(TecnicoPartialDTO dto){
+//        Tecnico pt = new Tecnico(dto.getNumTec(),
+//                dto.getNome(), dto.getDataNascimento());
+//
+//
+//        return pt;
+//    }
 
     public static ListaTecnicoPartialDTO listaTecnico2ListaTecnicoPartialDTO(ArrayList<Tecnico> tecnicos) throws NullPointerException {
         ArrayList<TecnicoPartialDTO> tecnicosDTO = new ArrayList<>();
@@ -174,14 +182,25 @@ public class Converter {
         return clienteDTO;
     }
 
-    public static Cliente clienteDTO2Cliente(ClienteDTO clienteDTO) throws NullPointerException {
-        Cliente cliente = null;
+//    public static Cliente clienteDTO2Cliente(ClienteDTO clienteDTO) throws NullPointerException {
+//        Cliente cliente = new Cliente();
+//
+//        //Data data = dataDTO2data(funcionarioDTO.getNascimento());
+//        cliente = new Cliente(clienteDTO.getNif(), clienteDTO.getNome(), cliente.getNumCli());
+//
+//        return cliente;
+//    }
+
+    public static Cliente clienteDTO2Cliente(ClientePartialDTO clienteDTO) throws NullPointerException {
+        Cliente cliente = new Cliente();
 
         //Data data = dataDTO2data(funcionarioDTO.getNascimento());
         cliente = new Cliente(clienteDTO.getNif(), clienteDTO.getNome(), cliente.getNumCli());
 
         return cliente;
     }
+
+
 
     public static ListaClientePartialDTO listaCliente2ListaClientePartialDTO(ArrayList<Cliente> clientes) throws NullPointerException {
         ArrayList<ClientePartialDTO> clientesDTO = new ArrayList<>();
@@ -239,6 +258,15 @@ public class Converter {
                 dto.getModelo(),
                 dto.getNumSerie(),
                 dto.getTecnico());
+
+        return pt;
+    }
+
+    public static Tecnico tecnicoDtoToTecnico(TecnicoPartialDTO dto){
+        Tecnico pt = new Tecnico(dto.getNumTec(),
+                dto.getNome(),
+                dto.getDataNascimento());
+
 
         return pt;
     }

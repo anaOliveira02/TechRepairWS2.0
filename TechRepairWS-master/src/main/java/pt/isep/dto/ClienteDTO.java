@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@JsonPropertyOrder({"nome", "nif"})
+@JsonPropertyOrder({"nome", "nif", "numCli"})
 @JacksonXmlRootElement(localName = "cliente")
 public class ClienteDTO {
     @JacksonXmlProperty(localName = "nome")

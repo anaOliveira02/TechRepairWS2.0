@@ -146,7 +146,19 @@ public class ClientesService {
 
 
 
-    public static void addCliente(ClienteDTO clienteDTO) {
+//    public static void addCliente(ClienteDTO clienteDTO) {
+//
+//        Cliente cliente = Converter.clienteDTO2Cliente(clienteDTO);
+//        if (cliente != null) {
+//            LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//            lojaReparacoes.addCliente(cliente);
+//            Dados.guardarDados(lojaReparacoes);
+//        } else {
+//            throw new ConversaoException("ClienteDTO");
+//        }
+//    }
+
+    public static void addCliente(ClientePartialDTO clienteDTO) {
 
         Cliente cliente = Converter.clienteDTO2Cliente(clienteDTO);
         if (cliente != null) {
@@ -158,7 +170,7 @@ public class ClientesService {
         }
     }
 
-    public static void updateCliente(int nr, ClienteDTO clienteDTO) {
+    public static void updateCliente(int nr, ClientePartialDTO clienteDTO) {
         Cliente cliente = Converter.clienteDTO2Cliente(clienteDTO);
         if (cliente != null) {
             LojaReparacoes lojaReparacoes = Dados.carregarDados();

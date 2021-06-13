@@ -66,10 +66,10 @@ package pt.isep.service;
 
 
 import pt.isep.dao.Dados;
-import pt.isep.dto.Converter;
-import pt.isep.dto.ListaTecnicoPartialDTO;
-import pt.isep.dto.TecnicoDTO;
+import pt.isep.dto.*;
 import pt.isep.exception.ConversaoException;
+import pt.isep.exception.NumParNaoEncontrado;
+import pt.isep.model.Assistencia;
 import pt.isep.model.LojaReparacoes;
 import pt.isep.model.Tecnico;
 
@@ -84,41 +84,75 @@ public class TecnicosService {
         return listaTecnicoDTO;
     }
 
-    public static TecnicoDTO getTecnico(int nr) {
-        LojaReparacoes lojaReparacoes = Dados.carregarDados();
-        Tecnico tecnico = lojaReparacoes.getTecnico(nr);
-        if (tecnico == null) {
-            return null;
-        }
-        TecnicoDTO tecnicoDTO = Converter.tecnico2TecnicoDTO(tecnico);
-        if(tecnicoDTO != null){
-            return tecnicoDTO;
-        }else{
-            throw new ConversaoException("TecnicoFullDTO");
-        }
+//    public static TecnicoDTO getTecnico(int nr) {
+//        LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//        Tecnico tecnico = lojaReparacoes.getTecnico(nr);
+//        if (tecnico == null) {
+//            return null;
+//        }
+//        TecnicoDTO tecnicoDTO = Converter.tecnico2TecnicoDTO(tecnico);
+//        if(tecnicoDTO != null){
+//            return tecnicoDTO;
+//        }else{
+//            throw new ConversaoException("TecnicoFullDTO");
+//        }
+//
+//    }
 
+    public static TecnicoPartialDTO getTecnico(int numTec) {
+        LojaReparacoes drsn = Dados.carregarDados();
+        Tecnico tecnico = drsn.getTecnico(numTec);
+        TecnicoPartialDTO tecnicoPartialDTO = Converter.tecnico2TecnicoPartialDTO(tecnico);
+        return tecnicoPartialDTO;
     }
 
-    public static void addTecnico(TecnicoDTO tecnicoDTO) {
+//    public static void addTecnico(TecnicoDTO tecnicoDTO) {
+//
+//        Tecnico tecnico = Converter.tecnicoDTO2Tecnico(tecnicoDTO);
+//        if (tecnico != null) {
+//            LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//            lojaReparacoes.addTecnico(tecnico);
+//            Dados.guardarDados(lojaReparacoes);
+//        } else {
+//            throw new ConversaoException("TecnicoDTO");
+//        }
+//    }
 
-        Tecnico tecnico = Converter.tecnicoDTO2Tecnico(tecnicoDTO);
-        if (tecnico != null) {
-            LojaReparacoes lojaReparacoes = Dados.carregarDados();
-            lojaReparacoes.addTecnico(tecnico);
-            Dados.guardarDados(lojaReparacoes);
+    public static void addTecnico(TecnicoPartialDTO dto) {
+        Tecnico c = Converter.tecnicoDtoToTecnico(dto);
+        if (c != null) {
+            LojaReparacoes drsn = Dados.carregarDados();
+            drsn.addTecnico(c);
+            Dados.guardarDados(drsn);
         } else {
             throw new ConversaoException("TecnicoDTO");
         }
     }
 
-    public static void updateTecnico(int nr, TecnicoDTO tecnicoDTO) {
-        Tecnico tecnico = Converter.tecnicoDTO2Tecnico(tecnicoDTO);
+//    public static void updateTecnico(int nr, TecnicoDTO tecnicoDTO) {
+//        Tecnico tecnico = Converter.tecnicoDtoToTecnico(tecnicoDTO);
+//        if (tecnico != null) {
+//            LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//            lojaReparacoes.updateTecnico(nr, tecnico);
+//            Dados.guardarDados(lojaReparacoes);
+//        } else {
+//            throw new ConversaoException("TecnicoDTO");
+//        }
+//    }
+
+    public static void updateTecnico(int numTec, TecnicoPartialDTO dto) {
+        LojaReparacoes drsn = Dados.carregarDados();
+        Tecnico tecnico = (Tecnico) drsn.getByNumTec(numTec);
+        //int posicao = drsn.getPosicaoByNumTec((numTec));
         if (tecnico != null) {
-            LojaReparacoes lojaReparacoes = Dados.carregarDados();
-            lojaReparacoes.updateTecnico(nr, tecnico);
-            Dados.guardarDados(lojaReparacoes);
+            tecnico.setNome(dto.getNome());
+            tecnico.setNumTec(dto.getNumTec());
+            tecnico.setDataNascimento(dto.getDataNascimento());
+            drsn.removeTecnicoNumTec(numTec);
+            drsn.addTecnico((tecnico));
+            Dados.guardarDados(drsn);
         } else {
-            throw new ConversaoException("TecnicoDTO");
+            throw new NumParNaoEncontrado("NumTec nao encontrado");
         }
     }
 

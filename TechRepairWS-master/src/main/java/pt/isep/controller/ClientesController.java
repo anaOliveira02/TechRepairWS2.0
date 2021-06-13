@@ -152,7 +152,7 @@ public class ClientesController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> addCliente(@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<Object> addCliente(@RequestBody ClientePartialDTO clienteDTO) {
         try {
             ClientesService.addCliente(clienteDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -165,7 +165,7 @@ public class ClientesController {
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> updateCliente(@PathVariable("id") int nr, @RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<Object> updateCliente(@PathVariable("id") int nr, @RequestBody ClientePartialDTO clienteDTO) {
         try {
             ClientesService.updateCliente(nr, clienteDTO);
             return new ResponseEntity<>(HttpStatus.OK);

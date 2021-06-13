@@ -41,18 +41,36 @@ public class LojaReparacoes implements Serializable {
     public void adicionarOrcamento(Orcamento novo){
         for (int i = 0; i < orcamentos.size(); i++) {
             Orcamento actual = orcamentos.get(i);
-            if(novo.getNumOrc() == actual.getNumOrc()){
-                throw new AssistenciaExistenteException("Orçamento já existe");
-            }
+//            if(novo.getNumOrc() == actual.getNumOrc()){
+//                throw new AssistenciaExistenteException("Orçamento já existe");
+//            }
         }
         orcamentos.add(novo);
     }
 
+//    public void addCliente(Cliente novoCliente){
+//        for (int i = 0; i < clientes.size(); i++) {
+//            Cliente p = clientes.get(i);
+//            if (p.getNumCli() == novoCliente.getNumCli()) {
+//                throw new NumParDuplicadoException(novoCliente.getNumCli()+"");
+//            }
+//        }
+//        clientes.add(novoCliente);
+//    }
+
     public void addCliente(Cliente novoCliente){
         for (int i = 0; i < clientes.size(); i++) {
             Cliente p = clientes.get(i);
-            if (p.getNumCli() == novoCliente.getNumCli()) {
-                throw new NumParDuplicadoException(novoCliente.getNumCli()+"");
+
+            if (p.getNif() == novoCliente.getNif()) {
+                //throw new NifDuplicadoException(novoCliente.getNif()+"");
+            }
+
+            if(p instanceof Cliente){
+                Cliente f = (Cliente) p;
+                if (f.getNumCli() == novoCliente.getNumCli()) {
+                    //throw new NumeroClienteDuplicadoException(novoCliente.getNumCli()+"");
+                }
             }
         }
         clientes.add(novoCliente);
@@ -61,12 +79,24 @@ public class LojaReparacoes implements Serializable {
     public void addAssistencia(Assistencia assistencia){
         for (int i = 0; i < assistencias.size(); i++) {
             Assistencia p = assistencias.get(i);
+
             if (p.getNumAssist() == assistencia.getNumAssist()) {
-                throw new NumParDuplicadoException(assistencia.getNumAssist()+"");
+                //throw new NifDuplicadoException(novoCliente.getNif()+"");
             }
+
+
         }
         assistencias.add(assistencia);
+
     }
+//        for (int i = 0; i < assistencias.size(); i++) {
+//            Assistencia p = assistencias.get(i);
+////            if (p.getNumAssist() == assistencia.getNumAssist()) {
+////                throw new NumParDuplicadoException(assistencia.getNumAssist()+"");
+////            }
+//        }
+//        assistencias.add(assistencia);
+//    }
 
 
     public Tecnico getByNumTec(int numTec) {
@@ -140,6 +170,16 @@ public class LojaReparacoes implements Serializable {
         for (int i = 0; i < assistencias.size(); i++) {
             Assistencia p = assistencias.get(i);
             if (p.getNumAssist() == numAssis) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int getPosicaoByNumTec(int numTec) {
+        for (int i = 0; i < tecnicos.size(); i++) {
+            Tecnico p = tecnicos.get(i);
+            if (p.getNumTec() == numTec) {
                 return i;
             }
         }
@@ -230,13 +270,20 @@ public class LojaReparacoes implements Serializable {
     }
 
     public void addTecnico(Tecnico tecnico) throws NumeroTecnicoDuplicadoException {
-        Tecnico f = getByNumTec(tecnico.getNumTec());
-        if (f == null) {
-            addTecnico(tecnico);
-        } else {
-            throw new NumeroTecnicoDuplicadoException(f.getNumTec() + ": Número de Tecnico já existe");
+        for (int i = 0; i < tecnicos.size(); i++) {
+            Tecnico p = tecnicos.get(i);
+
+
         }
+        tecnicos.add(tecnico);
     }
+        //        Tecnico f = getByNumTec(tecnico.getNumTec());
+//        if (f == null) {
+//            addTecnico(tecnico);
+//        } else {
+//            throw new NumeroTecnicoDuplicadoException(f.getNumTec() + ": Número de Tecnico já existe");
+//        }
+//    }
 
     public void addOrcamento(Orcamento orcamento) throws NumeroTecnicoDuplicadoException {
         Orcamento f = getByNumOrc(orcamento.getNumOrc());
