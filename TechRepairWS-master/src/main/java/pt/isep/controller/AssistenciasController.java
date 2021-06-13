@@ -81,41 +81,103 @@ import pt.isep.service.TecnicosService;
 @RestController
 @RequestMapping("/api")
 public class AssistenciasController {
+//    @RequestMapping(value = "/assistencias",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> getAssistencias() {
+//        try {
+//            ListaAssistenciaPartialDTO listaAssistenciaPartialDTO = AssistenciasService.getAssistencias();
+//            if (listaAssistenciaPartialDTO != null) {
+//                return new ResponseEntity<>(listaAssistenciaPartialDTO, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
+//    @RequestMapping(value = "/assistencias/{id}",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> getAssistencia(@PathVariable("id") int nr) {
+//        try {
+//            AssistenciaDTO assistenciaDTO = AssistenciasService.getAssistencia(nr);
+//            if (assistenciaDTO != null) {
+//                return new ResponseEntity<>(assistenciaDTO, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
+//    @RequestMapping(value = "/assitencias",
+//            method = RequestMethod.POST,
+//            consumes = MediaType.APPLICATION_XML_VALUE,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> addAssistencia(@RequestBody AssistenciaDTO assistenciaDTO) {
+//        try {
+//            AssistenciasService.addAssistencia(assistenciaDTO);
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
+//
+//    @RequestMapping(value = "/assistencias/{id}",
+//            method = RequestMethod.PUT,
+//            consumes = MediaType.APPLICATION_XML_VALUE,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> updateAssistencia(@PathVariable("id") int nr, @RequestBody AssistenciaDTO assistenciaDTO) {
+//        try {
+//            AssistenciasService.updateAssistencia(nr, assistenciaDTO);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
+//
+//    @RequestMapping(value = "/assistencias/{id}",
+//            method = RequestMethod.DELETE,
+//            produces = MediaType.APPLICATION_XML_VALUE)
+//    public ResponseEntity<Object> removeAssistencia(@PathVariable("id") int nr) {
+//        try {
+//            AssistenciasService.removeAssistencia(nr);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
+//        }
+//    }
+
     @RequestMapping(value = "/assistencias",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> getAssistencias() {
         try {
-            ListaAssistenciaPartialDTO listaAssistenciaPartialDTO = AssistenciasService.getAssistencias();
-            if (listaAssistenciaPartialDTO != null) {
-                return new ResponseEntity<>(listaAssistenciaPartialDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+            ListaAssistenciaPartialDTO assistenciasDTO = AssistenciasService.getAssistencias();
+            return new ResponseEntity<>(assistenciasDTO, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/assistencias/{id}",
+
+    @RequestMapping(value = "/assistencia/{bi}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getAssistencia(@PathVariable("id") int nr) {
+    public ResponseEntity<Object> getAssistencia(@PathVariable("numAssis") int numAssis) {
         try {
-            AssistenciaDTO assistenciaDTO = AssistenciasService.getAssistencia(nr);
-            if (assistenciaDTO != null) {
-                return new ResponseEntity<>(assistenciaDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+            AssistenciaPartialDTO assistenciaDTO = AssistenciasService.getAssistencia(numAssis);
+            return new ResponseEntity<>(assistenciaDTO, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
-    @RequestMapping(value = "/assitencias",
+
+    @RequestMapping(value = "/assistencia",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> addAssistencia(@RequestBody AssistenciaDTO assistenciaDTO) {
+    public ResponseEntity<Object> addAssistencia(@RequestBody AssistenciaPartialDTO assistenciaDTO) {
         try {
             AssistenciasService.addAssistencia(assistenciaDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -124,25 +186,14 @@ public class AssistenciasController {
         }
     }
 
-    @RequestMapping(value = "/assistencias/{id}",
+    @RequestMapping(value = "/assistencia/{numAssis}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> updateAssistencia(@PathVariable("id") int nr, @RequestBody AssistenciaDTO assistenciaDTO) {
+    public ResponseEntity<Object> updateAssistencia(@PathVariable("numAssis") int numAssis, @RequestBody
+            AssistenciaPartialDTO dto) {
         try {
-            AssistenciasService.updateAssistencia(nr, assistenciaDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = "/assistencias/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> removeAssistencia(@PathVariable("id") int nr) {
-        try {
-            AssistenciasService.removeAssistencia(nr);
+            AssistenciasService.updateAssistencia(numAssis, dto);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);

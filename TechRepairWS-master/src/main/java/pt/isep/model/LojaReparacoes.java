@@ -136,6 +136,16 @@ public class LojaReparacoes implements Serializable {
         return null;
     }
 
+    public int getPosicaoByNumAssis(int numAssis) {
+        for (int i = 0; i < assistencias.size(); i++) {
+            Assistencia p = assistencias.get(i);
+            if (p.getNumAssist() == numAssis) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public ArrayList<Tecnico> getTecnicos() {
         ArrayList<Tecnico> tecnicos = new ArrayList<>();
         for (int i = 0; i < this.tecnicos.size(); i++) {
@@ -295,6 +305,17 @@ public class LojaReparacoes implements Serializable {
         }
         else {
             throw new NumParNaoEncontrado("O tecnico não foi encontrado");
+        }
+    }
+
+    public Assistencia removeAssistenciaPosicao(int pos) {
+        validaPosicaoAssistencia(pos);
+        return assistencias.remove(pos);
+    }
+
+    private void validaPosicaoAssistencia(int pos) {
+        if (pos < 0 || pos > assistencias.size()) {
+            throw new ElementoNaoExistenteException("A posição " + pos + " não é válida para assistencias");
         }
     }
 

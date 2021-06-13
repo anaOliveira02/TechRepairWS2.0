@@ -223,11 +223,24 @@ public class Converter {
         return orcamentoDTO;
     }
 
-    public static Assistencia assistenciaDTO2Assistencia(AssistenciaDTO assistenciaDTO) throws NullPointerException {
-        Assistencia assistencia = null;
-        //Data data = dataDTO2data(pessoaDTO.getNascimento());
-        assistencia = new Assistencia(assistenciaDTO.getNumAssist(), assistenciaDTO.getAssunto(), assistenciaDTO.getEstado(), assistenciaDTO.getEquipamento(), assistenciaDTO.getMarca(), assistenciaDTO.getModelo(), assistenciaDTO.getNumSerie(), assistenciaDTO.getTecnico());
-        return assistencia;
+//    public static Assistencia assistenciaDTO2Assistencia(AssistenciaDTO assistenciaDTO) throws NullPointerException {
+//        Assistencia assistencia = null;
+//        //Data data = dataDTO2data(pessoaDTO.getNascimento());
+//        assistencia = new Assistencia(assistenciaDTO.getNumAssist(), assistenciaDTO.getAssunto(), assistenciaDTO.getEstado(), assistenciaDTO.getEquipamento(), assistenciaDTO.getMarca(), assistenciaDTO.getModelo(), assistenciaDTO.getNumSerie(), assistenciaDTO.getTecnico());
+//        return assistencia;
+//    }
+
+    public static Assistencia assistenciaDtoToAssistencia(AssistenciaPartialDTO dto){
+        Assistencia pt = new Assistencia(dto.getNumAssis(),
+                dto.getAssunto(),
+                dto.getEstado(),
+                dto.getEquipamento(),
+                dto.getMarca(),
+                dto.getModelo(),
+                dto.getNumSerie(),
+                dto.getTecnico());
+
+        return pt;
     }
 
     public static Orcamento orcamentoDTO2Orcamento(OrcamentoDTO orcamentoDTO) throws NullPointerException {

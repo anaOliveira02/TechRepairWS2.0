@@ -14,12 +14,23 @@ public class AssistenciasService {
 
     private static Object ListaClienteDTO;
 
-    public static void addAssistencia(AssistenciaDTO assistencia) {
+//    public static void addAssistencia(AssistenciaDTO assistencia) {
+//
+//        LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//        Assistencia novaAssistencia = Converter.assistenciaDTO2Assistencia(assistencia);
+//        lojaReparacoes.adicionarAssistencia(novaAssistencia);
+//        Dados.guardarDados(lojaReparacoes);
+//    }
 
-        LojaReparacoes lojaReparacoes = Dados.carregarDados();
-        Assistencia novaAssistencia = Converter.assistenciaDTO2Assistencia(assistencia);
-        lojaReparacoes.adicionarAssistencia(novaAssistencia);
-        Dados.guardarDados(lojaReparacoes);
+    public static void addAssistencia(AssistenciaPartialDTO dto) {
+        Assistencia c = Converter.assistenciaDtoToAssistencia(dto);
+        if (c != null) {
+            LojaReparacoes drsn = Dados.carregarDados();
+            drsn.addAssistencia(c);
+            Dados.guardarDados(drsn);
+        } else {
+            throw new ConversaoException("AssistenciaDTO");
+        }
     }
 
     public static void removeAssistencia(int numAssist) {
@@ -54,30 +65,58 @@ public class AssistenciasService {
 //        }
 //    }
 
-    public static void updateAssistencia(int nr, AssistenciaDTO assistenciaDTO) {
-        Assistencia assistencia = Converter.assistenciaDTO2Assistencia(assistenciaDTO);
+//    public static void updateAssistencia(int nr, AssistenciaDTO assistenciaDTO) {
+//        Assistencia assistencia = Converter.assistenciaDTO2Assistencia(assistenciaDTO);
+//        if (assistencia != null) {
+//            LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//            lojaReparacoes.updateAssistencia(nr, assistencia);
+//            Dados.guardarDados(lojaReparacoes);
+//        } else {
+//            throw new ConversaoException("AssistenciaDTO");
+//        }
+//    }
+
+    public static void updateAssistencia(int numAssis, AssistenciaPartialDTO dto) {
+        LojaReparacoes drsn = Dados.carregarDados();
+        Assistencia assistencia = (Assistencia) drsn.getByNumAssist(numAssis);
+        int posicao = drsn.getPosicaoByNumAssis((numAssis));
         if (assistencia != null) {
-            LojaReparacoes lojaReparacoes = Dados.carregarDados();
-            lojaReparacoes.updateAssistencia(nr, assistencia);
-            Dados.guardarDados(lojaReparacoes);
+            assistencia.setNumAssist(dto.getNumAssis());
+            assistencia.setAssunto(dto.getAssunto());
+            assistencia.setEquipamento(dto.getEquipamento());
+            assistencia.setEstado(dto.getEstado());
+            assistencia.setMarca(dto.getMarca());
+            assistencia.setModelo(dto.getModelo());
+            assistencia.setNumSerie(dto.getNumSerie());
+            assistencia.setTecnico(dto.getTecnico());
+            drsn.removeAssistenciaPosicao(posicao);
+            drsn.addAssistencia((assistencia));
+            Dados.guardarDados(drsn);
         } else {
-            throw new ConversaoException("AssistenciaDTO");
+            throw new NumParNaoEncontrado("NumAssis nao encontrado");
         }
     }
 
-    public static AssistenciaDTO getAssistencia(int nr) {
-        LojaReparacoes lojaReparacoes = Dados.carregarDados();
-        Assistencia assistencia = lojaReparacoes.getAssistencia(nr);
-        if (assistencia == null) {
-            return null;
-        }
-        AssistenciaDTO assistenciaDTO = Converter.assistencia2AssistenciaDTO(assistencia);
-        if(assistenciaDTO != null){
-            return assistenciaDTO;
-        }else{
-            throw new ConversaoException("AssistenciaFullDTO");
-        }
+//    public static AssistenciaDTO getAssistencia(int nr) {
+//        LojaReparacoes lojaReparacoes = Dados.carregarDados();
+//        Assistencia assistencia = lojaReparacoes.getAssistencia(nr);
+//        if (assistencia == null) {
+//            return null;
+//        }
+//        AssistenciaDTO assistenciaDTO = Converter.assistencia2AssistenciaDTO(assistencia);
+//        if(assistenciaDTO != null){
+//            return assistenciaDTO;
+//        }else{
+//            throw new ConversaoException("AssistenciaFullDTO");
+//        }
+//
+//    }
 
+    public static AssistenciaPartialDTO getAssistencia(int numAssis) {
+        LojaReparacoes drsn = Dados.carregarDados();
+        Assistencia assistencia = drsn.getAssistencia(numAssis);
+        AssistenciaPartialDTO assistenciaPartial = Converter.assistencia2AssistenciaPartialDTO(assistencia);
+        return assistenciaPartial;
     }
 
 //    public ListaAssistenciaPartialDTO getAssistencias() {
